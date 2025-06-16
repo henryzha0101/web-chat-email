@@ -4,6 +4,8 @@ export const colors = {
   black: "#000000",
 };
 
+export const containerMarginVal = "48px";
+
 export const body = {
   width: "100%",
   backgroundColor: colors.primary,
@@ -16,15 +18,15 @@ export const container = {
   width: "600px",
   maxWidth: "100%",
   margin: "0 auto",
-  padding: "0 30px 0",
+  padding: `0 ${containerMarginVal} 0`,
   backgroundColor: colors.primary,
 };
 
 export const header = {
-  padding: "20px 0 0",
+  padding: `${containerMarginVal} 0 0`,
 };
 
 export const footer = {
-  padding: "0 0 20px",
+  padding: `0 0 ${containerMarginVal}`,
   color: "#818284",
 };

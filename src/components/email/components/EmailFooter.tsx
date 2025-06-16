@@ -8,6 +8,14 @@ import {
   Img,
 } from "@react-email/components";
 import { colors, footer } from "@/emails/_styles/common";
+import {
+  socialMedia,
+  routes,
+  supportEmail,
+  staticAssetsPrefix,
+} from "@/lib/config";
+
+const _baseUrl = process.env.VERCEL_URL ? staticAssetsPrefix : "";
 
 interface EmailFooterProps {
   userId?: string;
@@ -16,24 +24,24 @@ interface EmailFooterProps {
 
 export const EmailFooter = ({
   userId = "",
-  baseUrl = "",
+  baseUrl = _baseUrl,
 }: EmailFooterProps) => (
   <Section style={footer}>
     <Hr />
     <Text>
       Please add{" "}
-      <Link href="mailto:notifications@joi.com" style={{ color: colors.white }}>
-        notifications@joi.com
+      <Link href={routes.supportEmail} style={{ color: colors.white }}>
+        {supportEmail}
       </Link>{" "}
       to your contact list. You can{" "}
-      <Link href="https://example.com" style={{ color: colors.white }}>
+      <Link href={routes.unsubscribe} style={{ color: colors.white }}>
         unsubscribe
       </Link>{" "}
       from this mailing at any time.
     </Text>
     <Text>
       All payments are executed in accordance with Joi AI{" "}
-      <Link href="https://example.com" style={{ color: colors.white }}>
+      <Link href={routes.terms} style={{ color: colors.white }}>
         Terms & Conditions
       </Link>
       .
@@ -42,7 +50,7 @@ export const EmailFooter = ({
     <Row>
       <Column>
         <Section>
-          <Link href="https://example.com">
+          <Link href={socialMedia.twitter}>
             <Img
               src={`${baseUrl}/static/logo_x.png`}
               width="28"

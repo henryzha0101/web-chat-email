@@ -1,13 +1,11 @@
 // import Template from "@/components/email/template/verify-email/index";
 
-import { Button, Section, Text } from "@react-email/components";
+import { Section, Text } from "@react-email/components";
 import EmailHeader from "@/components/email/components/EmailHeader";
 import EmailFooter from "@/components/email/components/EmailFooter";
 import EmailContainer from "@/components/email/components/EmailContainer";
-
-const baseUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "";
+import EmailButton from "@/components/email/components/EmailButton";
+import { websiteName, routes } from "@/lib/config";
 
 const confirmText = {
   color: "#F8FAFC",
@@ -39,24 +37,6 @@ const secureText = {
   margin: "0 0 32px",
 };
 
-const button = {
-  display: "inline-flex",
-  padding: "12px",
-  justifyContent: "center",
-  alignItems: "center",
-
-  borderRadius: 12,
-  background: "#FFF",
-  boxShadow: "0px 0px 12px 0px rgba(169, 49, 206, 0.60)",
-
-  color: "#070D1B",
-  fontFamily: "Roboto",
-  fontSize: 16,
-  fontStyle: "normal",
-  fontWeight: 600,
-  lineHeight: "24px",
-};
-
 const reminderText = {
   color: "#F8FAFC",
   fontFamily: "Roboto",
@@ -74,7 +54,13 @@ const reminderTextStrong = {
   fontWeight: 600,
 };
 
-export const Email = () => {
+export const VerifyEmail = ({
+  rid,
+  userId,
+}: {
+  rid: string;
+  userId: string;
+}) => {
   return (
     <EmailContainer
       title="Welcome! Please confirm your email."
@@ -85,11 +71,11 @@ export const Email = () => {
         <Text style={confirmText}>Confirm your address</Text>
         <Text style={neuronsText}>and get 10 neurons!</Text>
         <Text style={secureText}>
-          Secure your account and stay in touch with EDEN AI by EVA AI.
+          Secure your account and stay in touch with {websiteName}
         </Text>
-        <Button href="https://example.com" style={button}>
+        <EmailButton href={`${routes.emailConfirmation}?rid=${rid}`}>
           Confirm &amp; Get Bonus
-        </Button>
+        </EmailButton>
         <Text style={reminderText}>
           It&apos;s a friendly reminder you have{" "}
           <strong style={reminderTextStrong}>up to 70% off</strong> your
@@ -97,12 +83,22 @@ export const Email = () => {
         </Text>
       </Section>
 
-      <EmailFooter userId="61912225442" baseUrl={baseUrl} />
+      <EmailFooter userId={userId} />
     </EmailContainer>
   );
 };
 
-export default function Home() {
-  return <Email></Email>;
-  // return <Template></Template>;
+const beRender = {
+  rid: "test-rid",
+  userId: "61912225442",
+};
+
+const bePlaceHolder = {
+  rid: "{{rid}}",
+  userId: "{{userId}}",
+};
+
+export default function VerifyEmailPage() {
+  const props = beRender;
+  return <VerifyEmail {...props} />;
 }
