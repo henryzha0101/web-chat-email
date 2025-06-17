@@ -5,6 +5,7 @@ import EmailHeader from "@/components/email/components/EmailHeader";
 import EmailFooter from "@/components/email/components/EmailFooter";
 import EmailContainer from "@/components/email/components/EmailContainer";
 import EmailButton from "@/components/email/components/EmailButton";
+import EmailReminder from "@/components/email/components/EmailReminder";
 import { websiteName, routes } from "@/lib/config";
 
 const confirmText = {
@@ -37,23 +38,6 @@ const secureText = {
   margin: "0 0 32px",
 };
 
-const reminderText = {
-  color: "#F8FAFC",
-  fontFamily: "Roboto",
-  fontSize: 18,
-  fontStyle: "normal",
-  fontWeight: 400,
-  lineHeight: "28px",
-  margin: "32px 0 0",
-};
-
-const reminderTextStrong = {
-  position: "relative" as const,
-  top: "3px",
-  color: "#9333EA",
-  fontWeight: 600,
-};
-
 export const VerifyEmail = ({
   rid,
   userId,
@@ -76,11 +60,7 @@ export const VerifyEmail = ({
         <EmailButton href={`${routes.emailConfirmation}?rid=${rid}`}>
           Confirm &amp; Get Bonus
         </EmailButton>
-        <Text style={reminderText}>
-          It&apos;s a friendly reminder you have{" "}
-          <strong style={reminderTextStrong}>up to 70% off</strong> your
-          first-time Premium subscription.
-        </Text>
+        <EmailReminder />
       </Section>
 
       <EmailFooter userId={userId} />
