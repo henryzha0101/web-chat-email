@@ -16,6 +16,7 @@ const buttonWrapper = {
   borderRadius: 12,
   background: "#FFF",
   boxShadow: "0px 0px 12px 0px rgba(169, 49, 206, 0.60)",
+  cursor: "pointer" as const,
 };
 
 const defaultButtonStyle = {
