@@ -11,12 +11,16 @@ import EmailHeader from "@/components/email/components/EmailHeader";
 import EmailFooter from "@/components/email/components/EmailFooter";
 import EmailContainer from "@/components/email/components/EmailContainer";
 import EmailButton from "@/components/email/components/EmailButton";
-import { websiteName, routes } from "@/lib/config";
+import { websiteName, routes, staticAssetsPrefix } from "@/lib/config";
 
 const heading = {
   color: "#F8FAFC",
   fontFamily: "Roboto",
-  fontSize: 24,
+  fontSize: 48,
+  fontStyle: "normal",
+  fontWeight: 700,
+  lineHeight: "normal",
+  margin: "40px 0 0 0",
 };
 
 const column = {
@@ -26,52 +30,97 @@ const column = {
 };
 
 const columnImg = {
-  width: "40%",
+  width: "239px",
 };
 
 const img = {
-  // position: "relative" as const,
-  // bottom: "-10px",
-  // zIndex: 1,
-  width: "207px",
-  // height: "276px",
+  position: "relative" as const,
+  right: "-18px",
+  width: "239px",
+  height: "225px",
   objectFit: "cover" as const,
   borderRadius: "12px 12px 0 0",
-  margin: "0 16px 0 16px",
+  margin: "0",
 };
 
 const text = {
   color: "#F8FAFC",
   fontFamily: "Roboto",
-  fontSize: 16,
+  fontSize: 18,
+  fontStyle: "normal",
+  fontWeight: 400,
+  lineHeight: "28px",
+  margin: "24px 0 32px 0",
 };
 
 const section = {
-  padding: "0 0 16px",
+  padding: "24px",
+  borderRadius: "16px",
+  background: "#161C29",
+  margin: "0 0 20px 0",
+};
+
+const cardIconWrapper = {
+  width: "40px",
+  height: "40px",
+  padding: "0 20px 0 0",
+};
+
+const cardIcon = {
+  width: "40px",
+  // height: "40px",
   color: "#F8FAFC",
-  backgroundColor: "rgb(24,34,46)",
-  borderRadius: "12px",
+  fontFamily: "Roboto",
+  fontSize: 40,
+  fontStyle: "normal",
+  fontWeight: 400,
+  lineHeight: "normal",
+  margin: "0 0 0 0",
+};
+const cardTitle = {
+  color: "#F8FAFC",
+  fontFamily: "Roboto",
+  fontSize: 22,
+  fontStyle: "normal",
+  fontWeight: 700,
+  lineHeight: "28px",
+  margin: "0 0 0 0",
+};
+const cardText = {
+  color: "#F8FAFC",
+  fontFamily: "Roboto",
+  fontSize: 18,
+  fontStyle: "normal",
+  fontWeight: 400,
+  lineHeight: "28px",
+  margin: "12px 0 0 0",
+};
+
+const button = {
+  margin: "12px 0 0 0",
 };
 
 export const WelcomeTo = ({
   rid,
   userId,
-  userCardImg,
 }: {
   rid: string;
   userId: string;
-  userCardImg: string;
+  userCardImg?: string;
 }) => {
   return (
     <EmailContainer
       title={`Welcome to ${websiteName}!`}
       preview="Your AI GF is ready! And don't forget to spend bonus neurons you got before they expire..."
+      bodyStyle={{
+        width: "624px",
+      }}
     >
       <EmailHeader />
       <Section>
+        <Heading style={heading}>Welcome aboard 💗</Heading>
         <Row>
           <Column style={column}>
-            <Heading style={heading}>Welcome aboard ❤️</Heading>
             <Text style={text}>
               Here you can chat, receive photos and even voice messages! Your
               new AI gf is waiting 🥰
@@ -84,23 +133,28 @@ export const WelcomeTo = ({
           </Column>
           <Column style={columnImg}>
             <Link href={`${routes.chat}?rid=${rid}`}>
-              <Img src={userCardImg} alt="AI GF" style={img} />
+              <Img
+                src={`${staticAssetsPrefix}/static/hot_selfie_rotate.png`}
+                alt="GF"
+                style={img}
+              />
+              {/* <Img src={userCardImg} alt="AI GF" style={img} /> */}
             </Link>
           </Column>
         </Row>
         <Link href={`${routes.chat}?rid=${rid}`}>
           <Section style={section}>
             <Row>
-              <Column>
-                <Text>👻</Text>
+              <Column style={cardIconWrapper}>
+                <Text style={cardIcon}>🔞</Text>
               </Column>
               <Column>
-                <Text>
+                <Text style={cardTitle}>
                   No ghosting, <br /> full support 24/7
                 </Text>
               </Column>
             </Row>
-            <Text>
+            <Text style={cardText}>
               Im always here, ready to chat. Feel free to dive into any topics,
               even the spicier ones...
             </Text>
@@ -109,18 +163,22 @@ export const WelcomeTo = ({
         <Link href={`${routes.chat}?rid=${rid}`}>
           <Section style={section}>
             <Row>
-              <Column>
-                <Text>🎁</Text>
+              <Column style={cardIconWrapper}>
+                <Text style={cardIcon}>🎁</Text>
               </Column>
               <Column>
-                <Text>A special gift just for you</Text>
+                <Text style={cardTitle}>A special gift just for you</Text>
               </Column>
             </Row>
-            <Text>
+            <Text style={cardText}>
               Oh. and don&apos;t forget to spend bonus neurons you got before
               they expire. So, what are you waiting for?
             </Text>
-            <EmailButton href={`${routes.chat}?rid=${rid}`}>
+            <EmailButton
+              type="outline"
+              href={`${routes.chat}?rid=${rid}`}
+              style={button}
+            >
               Check my bonus
             </EmailButton>
           </Section>
