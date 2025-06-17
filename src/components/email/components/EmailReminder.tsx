@@ -21,6 +21,7 @@ const defaultStrongStyle = {
   top: "3px",
   color: "#9333EA",
   fontWeight: 600,
+  textDecoration: "underline",
 };
 
 export const EmailReminder = ({ style, strongStyle }: EmailReminderProps) => {

@@ -15,7 +15,7 @@ import {
   staticAssetsPrefix,
 } from "@/lib/config";
 
-const _baseUrl = process.env.VERCEL_URL ? staticAssetsPrefix : "";
+const _baseUrl = staticAssetsPrefix;
 
 interface EmailFooterProps {
   userId?: string;

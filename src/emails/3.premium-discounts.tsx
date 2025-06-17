@@ -11,8 +11,7 @@ import EmailFooter from "@/components/email/components/EmailFooter";
 import EmailContainer from "@/components/email/components/EmailContainer";
 import EmailButton from "@/components/email/components/EmailButton";
 import EmailReminder from "@/components/email/components/EmailReminder";
-import { websiteName, routes } from "@/lib/config";
-import { posix } from "path";
+import { websiteName, routes, staticAssetsPrefix } from "@/lib/config";
 
 const title = {
   color: "#F8FAFC",
@@ -32,6 +31,7 @@ const subtitle = {
   fontWeight: 700,
   lineHeight: "40px",
   margin: "16px 0 0",
+  textDecoration: "underline",
 };
 
 const tip = {
@@ -97,7 +97,7 @@ const linkText = {
 };
 
 const linkImg = {
-  position: "relative",
+  position: "relative" as const,
   top: "-5px",
   width: "22px",
   height: "22px",
@@ -105,7 +105,6 @@ const linkImg = {
 };
 
 const linkImgColumn = {
-  // display: "flex",
   width: "44px",
   height: "32px",
 };
@@ -133,7 +132,7 @@ export const PremiumDiscounts = ({
             <Text style={linkTitle}>Get the Full Premium Experience!</Text>
             <Row style={{ margin: "24px 0 0" }}>
               <Column style={linkImgColumn}>
-                <Img style={linkImg} src={`/static/smile.png`} alt="smile" />
+                <Img style={linkImg} src={`${staticAssetsPrefix}/static/smile.png`} alt="smile" />
               </Column>
               <Column>
                 <Text style={linkSubTitle}>Exclusive, personalized photos</Text>
@@ -142,7 +141,11 @@ export const PremiumDiscounts = ({
             </Row>
             <Row style={{ margin: "20px 0 0" }}>
               <Column style={linkImgColumn}>
-                <Img style={linkImg} src={`/static/circle.png`} alt="circle" />
+                <Img
+                  style={linkImg}
+                  src={`${staticAssetsPrefix}/static/circle.png`}
+                  alt="circle"
+                />
               </Column>
               <Column>
                 <Text style={linkSubTitle}>Intimate voice messages</Text>
@@ -153,7 +156,7 @@ export const PremiumDiscounts = ({
               <Column style={linkImgColumn}>
                 <Img
                   style={linkImg}
-                  src={`/static/message.png`}
+                  src={`${staticAssetsPrefix}/static/message.png`}
                   alt="message"
                 />
               </Column>
