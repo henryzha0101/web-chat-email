@@ -180,14 +180,11 @@ export const PremiumDiscounts = ({
 const beRender = {
   rid: "test-rid",
   userId: "61912225442",
-  userCardImg:
-    "https://pub-1dd2cb98fc55487b8f184cb1b0017c12.r2.dev/character/album/1921137325988651008/picture/card.jpeg",
 };
 
 const bePlaceHolder = {
   rid: "{{rid}}",
   userId: "{{userId}}",
-  userCardImg: "{{userCardImg}}",
 };
 
 export default function PremiumDiscountsPage() {
