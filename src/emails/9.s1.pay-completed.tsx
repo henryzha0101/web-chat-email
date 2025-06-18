@@ -131,7 +131,7 @@ export const PayCompleted = ({
           </Text>
         </Section>
       </Section>
-      <EmailFooter userId={userId} />
+      <EmailFooter userId={userId} showLegalLinks={true} />
     </EmailContainer>
   );
 };
