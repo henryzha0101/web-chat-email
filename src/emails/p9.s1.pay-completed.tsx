@@ -58,6 +58,16 @@ const payTipLink = {
   textDecoration: "underline",
 };
 
+interface PayCompletedProps {
+  // rid: string;
+  userId: string;
+  purchaseDuration: string;
+  paymentMethod: string;
+  transactionDate: string;
+  purchaseCost: string;
+  vatAmount: string;
+}
+
 export const PayCompleted = ({
   // rid,
   userId,
@@ -66,15 +76,8 @@ export const PayCompleted = ({
   transactionDate,
   purchaseCost,
   vatAmount,
-}: {
-  // rid: string;
-  userId: string;
-  purchaseDuration: string;
-  paymentMethod: string;
-  transactionDate: string;
-  purchaseCost: string;
-  vatAmount: string;
-}) => {
+}: PayCompletedProps) => {
+  console.log("--props", "opopop");
   return (
     <EmailContainer
       title={`Payment Completed, Subscription Activated`}
@@ -146,17 +149,17 @@ const beRender = {
   vatAmount: "0 USD",
 };
 
-// const bePlaceHolder = {
-//   rid: "{{rid}}",
-//   userId: "{{userId}}",
-//   purchaseDuration: "{{purchaseDuration}}",
-//   paymentMethod: "{{paymentMethod}}",
-//   transactionDate: "{{transactionDate}}",
-//   purchaseCost: "{{purchaseCost}}",
-//   vatAmount: "{{vatAmount}}",
-// };
+export const bePlaceHolder = {
+  // rid: "{{rid}}",
+  userId: "{{userId}}",
+  purchaseDuration: "{{purchaseDuration}}",
+  paymentMethod: "{{paymentMethod}}",
+  transactionDate: "{{transactionDate}}",
+  purchaseCost: "{{purchaseCost}}",
+  vatAmount: "{{vatAmount}}",
+};
 
-export default function PayCompletedPage() {
-  const props = beRender;
+export default function PayCompletedPage({data}: {data: PayCompletedProps}) {
+  const props = data ?? beRender;
   return <PayCompleted {...props} />;
 }

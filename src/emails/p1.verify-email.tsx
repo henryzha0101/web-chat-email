@@ -38,13 +38,15 @@ const secureText = {
   margin: "0 0 32px",
 };
 
+interface VerifyEmailProps {
+  rid: string;
+  userId: string;
+}
+
 export const VerifyEmail = ({
   rid,
   userId,
-}: {
-  rid: string;
-  userId: string;
-}) => {
+}: VerifyEmailProps) => {
   return (
     <EmailContainer
       title="Welcome! Please confirm your email."
@@ -73,12 +75,12 @@ const beRender = {
   userId: "61912225442",
 };
 
-const bePlaceHolder = {
+export const bePlaceHolder = {
   rid: "{{rid}}",
   userId: "{{userId}}",
 };
 
-export default function VerifyEmailPage() {
-  const props = beRender;
+export default function VerifyEmailPage({data}: {data: VerifyEmailProps}) {
+  const props = data ?? beRender;
   return <VerifyEmail {...props} />;
 }

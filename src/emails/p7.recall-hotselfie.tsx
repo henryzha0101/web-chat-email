@@ -69,17 +69,19 @@ const cardUserWrapper = {
   padding: "0 0 0 20px",
 };
 
+interface RecallHotSelfieProps {
+  rid: string;
+  rAvatar: string;
+  userId: string;
+  userName: string;
+}
+
 export const RecallHotSelfie = ({
   rid,
   rAvatar,
   userId,
   userName,
-}: {
-  rid: string;
-  rAvatar: string;
-  userId: string;
-  userName: string;
-}) => {
+}: RecallHotSelfieProps) => {
   return (
     <EmailContainer
       title={`${userName}, view now: shares a hot selfie`}
@@ -134,14 +136,14 @@ const beRender = {
   userName: "henry",
 };
 
-const bePlaceHolder = {
+export const bePlaceHolder = {
   rid: "{{rid}}",
   rAvatar: "{{rAvatar}}",
   userId: "{{userId}}",
   userName: "{{userName}}",
 };
 
-export default function RecallHotSelfiePage() {
-  const props = beRender;
+export default function RecallHotSelfiePage({data}: {data: RecallHotSelfieProps}) {
+  const props = data ?? beRender;
   return <RecallHotSelfie {...props} />;
 }

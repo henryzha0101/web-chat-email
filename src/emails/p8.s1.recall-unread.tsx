@@ -41,13 +41,15 @@ const buttonWrapper = {
   margin: "32px 0 32px 150px",
 };
 
+interface RecallUnreadProps {
+  rid: string;
+  userId: string;
+}
+
 export const RecallUnread = ({
   rid,
   userId,
-}: {
-  rid: string;
-  userId: string;
-}) => {
+}: RecallUnreadProps) => {
   return (
     <EmailContainer
       title={`New message from `}
@@ -75,12 +77,12 @@ const beRender = {
   userId: "61912225442",
 };
 
-const bePlaceHolder = {
+export const bePlaceHolder = {
   rid: "{{rid}}",
   userId: "{{userId}}",
 };
 
-export default function RecallUnreadPage() {
-  const props = beRender;
+export default function RecallUnreadPage({data}: {data: RecallUnreadProps}) {
+  const props = data ?? beRender;
   return <RecallUnread {...props} />;
 }

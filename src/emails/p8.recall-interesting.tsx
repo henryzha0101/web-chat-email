@@ -47,13 +47,15 @@ const buttonWrapper = {
   margin: "32px 0 32px 150px",
 };
 
+interface RecallInterestingProps {
+  rid: string;
+  userId: string;
+}
+
 export const RecallInteresting = ({
   rid,
   userId,
-}: {
-  rid: string;
-  userId: string;
-}) => {
+}: RecallInterestingProps) => {
   return (
     <EmailContainer
       title={`I bet you wanna see this 😉`}
@@ -84,12 +86,12 @@ const beRender = {
   userId: "61912225442",
 };
 
-const bePlaceHolder = {
+export const bePlaceHolder = {
   rid: "{{rid}}",
   userId: "{{userId}}",
 };
 
-export default function RecallInterestingPage() {
-  const props = beRender;
+export default function RecallInterestingPage({data}: {data: RecallInterestingProps}) {
+  const props = data ?? beRender;
   return <RecallInteresting {...props} />;
 }

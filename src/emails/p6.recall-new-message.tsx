@@ -53,19 +53,21 @@ const rNameTip = {
   margin: "16px 0 40px 0",
 };
 
+interface RecallNewMessageProps {
+  rid: string;
+  rName: string;
+  rBgImg: string;
+  userId: string;
+  userName: string;
+}
+
 export const RecallNewMessage = ({
   rid,
   rName,
   rBgImg,
   userId,
   userName,
-}: {
-  rid: string;
-  rName: string;
-  rBgImg: string;
-  userId: string;
-  userName: string;
-}) => {
+}: RecallNewMessageProps) => {
   return (
     <EmailContainer
       title={`${userName}, guess what? You've got a new message from ${rName}`}
@@ -104,7 +106,7 @@ const beRender = {
   userName: "Henry",
 };
 
-const bePlaceHolder = {
+export const bePlaceHolder = {
   rid: "{{rid}}",
   rName: "{{rName}}",
   rBgImg: "{{rBgImg}}",
@@ -112,7 +114,7 @@ const bePlaceHolder = {
   userName: "{{userName}}",
 };
 
-export default function RecallNewMessagePage() {
-  const props = beRender;
+export default function RecallNewMessagePage({data}: {data: RecallNewMessageProps}) {
+  const props = data ?? beRender;
   return <RecallNewMessage {...props} />;
 }

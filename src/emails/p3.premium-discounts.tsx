@@ -109,13 +109,15 @@ const linkImgColumn = {
   height: "32px",
 };
 
+interface PremiumDiscountsProps {
+  rid: string;
+  userId: string;
+}
+
 export const PremiumDiscounts = ({
   rid,
   userId,
-}: {
-  rid: string;
-  userId: string;
-}) => {
+}: PremiumDiscountsProps) => {
   return (
     <EmailContainer
       title={`Up to 70% OFF Your Premium Experience!`}
@@ -182,12 +184,12 @@ const beRender = {
   userId: "61912225442",
 };
 
-const bePlaceHolder = {
+export const bePlaceHolder = {
   rid: "{{rid}}",
   userId: "{{userId}}",
 };
 
-export default function PremiumDiscountsPage() {
-  const props = beRender;
+export default function PremiumDiscountsPage({data}: {data: PremiumDiscountsProps}) {
+  const props = data ?? beRender;
   return <PremiumDiscounts {...props} />;
 }

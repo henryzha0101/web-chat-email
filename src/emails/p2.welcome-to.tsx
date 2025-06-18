@@ -100,14 +100,16 @@ const button = {
   margin: "12px 0 0 0",
 };
 
-export const WelcomeTo = ({
-  rid,
-  userId,
-}: {
+interface WelcomeToProps {
   rid: string;
   userId: string;
   userCardImg?: string;
-}) => {
+}
+
+export const WelcomeTo = ({
+  rid,
+  userId,
+}: WelcomeToProps) => {
   return (
     <EmailContainer
       title={`Welcome to ${websiteName}!`}
@@ -197,13 +199,13 @@ const beRender = {
     "https://pub-1dd2cb98fc55487b8f184cb1b0017c12.r2.dev/character/album/1921137325988651008/picture/card.jpeg",
 };
 
-const bePlaceHolder = {
+export const bePlaceHolder = {
   rid: "{{rid}}",
   userId: "{{userId}}",
   userCardImg: "{{userCardImg}}",
 };
 
-export default function WelcomeToPage() {
-  const props = beRender;
+export default function WelcomeToPage({data}: {data: WelcomeToProps}) {
+  const props = data ?? beRender;
   return <WelcomeTo {...props} />;
 }

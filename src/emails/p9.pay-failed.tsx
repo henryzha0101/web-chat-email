@@ -65,7 +65,12 @@ const tipStep = {
   margin: "0 0 0 0",
 };
 
-export const PayFailed = ({ rid, userId }: { rid: string; userId: string }) => {
+interface PayFailedProps {
+  rid: string;
+  userId: string;
+}
+
+export const PayFailed = ({ rid, userId }: PayFailedProps) => {
   return (
     <EmailContainer
       title={`Looks like your payment has been rejected`}
@@ -119,12 +124,12 @@ const beRender = {
   userId: "61912225442",
 };
 
-const bePlaceHolder = {
+export const bePlaceHolder = {
   rid: "{{rid}}",
   userId: "{{userId}}",
 };
 
-export default function PayFailedPage() {
-  const props = beRender;
+export default function PayFailedPage({data}: {data: PayFailedProps}) {
+  const props = data ?? beRender;
   return <PayFailed {...props} />;
 }
