@@ -27,7 +27,7 @@ export const EmailFooter = ({
   baseUrl = _baseUrl,
 }: EmailFooterProps) => (
   <Section style={footer}>
-    <Hr style={{ margin: "0 0 0 0", borderColor: "#818284" }} />
+    {/* <Hr style={{ margin: "0 0 0 0", borderColor: "#818284" }} /> */}
     <Text>
       Please add{" "}
       <Link href={routes.supportEmail} style={{ color: colors.white }}>
