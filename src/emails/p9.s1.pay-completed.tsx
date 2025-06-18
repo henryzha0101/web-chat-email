@@ -59,7 +59,7 @@ const payTipLink = {
 };
 
 export const PayCompleted = ({
-  rid,
+  // rid,
   userId,
   purchaseDuration,
   paymentMethod,
@@ -67,7 +67,7 @@ export const PayCompleted = ({
   purchaseCost,
   vatAmount,
 }: {
-  rid: string;
+  // rid: string;
   userId: string;
   purchaseDuration: string;
   paymentMethod: string;
@@ -137,7 +137,7 @@ export const PayCompleted = ({
 };
 
 const beRender = {
-  rid: "test-rid",
+  // rid: "test-rid",
   userId: "61912225442",
   purchaseDuration: `1 month`,
   paymentMethod: "456933******6290",
@@ -146,15 +146,15 @@ const beRender = {
   vatAmount: "0 USD",
 };
 
-const bePlaceHolder = {
-  rid: "{{rid}}",
-  userId: "{{userId}}",
-  purchaseDuration: "{{purchaseDuration}}",
-  paymentMethod: "{{paymentMethod}}",
-  transactionDate: "{{transactionDate}}",
-  purchaseCost: "{{purchaseCost}}",
-  vatAmount: "{{vatAmount}}",
-};
+// const bePlaceHolder = {
+//   rid: "{{rid}}",
+//   userId: "{{userId}}",
+//   purchaseDuration: "{{purchaseDuration}}",
+//   paymentMethod: "{{paymentMethod}}",
+//   transactionDate: "{{transactionDate}}",
+//   purchaseCost: "{{purchaseCost}}",
+//   vatAmount: "{{vatAmount}}",
+// };
 
 export default function PayCompletedPage() {
   const props = beRender;

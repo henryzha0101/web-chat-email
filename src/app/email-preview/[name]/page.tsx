@@ -33,9 +33,9 @@ import fs from "fs";
 export default async function EmailPreview({
   params,
 }: {
-  params: { name: string };
+  params: Promise<{ name: string }>;
 }) {
-  const { name: slug } = params;
+  const { name: slug } = await params;
 
   try {
     // const filePath = path.join(process.cwd(), "src/emails", `${slug}.tsx`);
