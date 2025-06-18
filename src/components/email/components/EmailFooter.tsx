@@ -13,6 +13,7 @@ import {
   routes,
   supportEmail,
   staticAssetsPrefix,
+  websiteName,
 } from "@/lib/config";
 
 const _baseUrl = staticAssetsPrefix;
@@ -30,18 +31,27 @@ export const EmailFooter = ({
     {/* <Hr style={{ margin: "0 0 0 0", borderColor: "#818284" }} /> */}
     <Text>
       Please add{" "}
-      <Link href={routes.supportEmail} style={{ color: colors.white }}>
+      <Link
+        href={routes.supportEmail}
+        style={{ color: colors.white, textDecoration: "underline" }}
+      >
         {supportEmail}
       </Link>{" "}
       to your contact list. You can{" "}
-      <Link href={routes.unsubscribe} style={{ color: colors.white }}>
+      <Link
+        href={routes.unsubscribe}
+        style={{ color: colors.white, textDecoration: "underline" }}
+      >
         unsubscribe
       </Link>{" "}
       from this mailing at any time.
     </Text>
     <Text>
-      All payments are executed in accordance with Joi AI{" "}
-      <Link href={routes.terms} style={{ color: colors.white }}>
+      All payments are executed in accordance with {websiteName}{" "}
+      <Link
+        href={routes.terms}
+        style={{ color: colors.white, textDecoration: "underline" }}
+      >
         Terms & Conditions
       </Link>
       .

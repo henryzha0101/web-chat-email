@@ -14,6 +14,7 @@ export const routes = {
   emailConfirmation: `${websiteUrl}/email-confirmation`,
   chat: `${websiteUrl}/chat`,
   terms: `${websiteUrl}/terms`,
+  support: `${websiteUrl}/support`,
   unsubscribe: `${websiteUrl}/unsubscribe`,
   supportEmail: `mailto:${supportEmail}`,
 };

@@ -3,7 +3,6 @@ import EmailHeader from "@/components/email/components/EmailHeader";
 import EmailFooter from "@/components/email/components/EmailFooter";
 import EmailContainer from "@/components/email/components/EmailContainer";
 import EmailButton from "@/components/email/components/EmailButton";
-// import EmailReminder from "@/components/email/components/EmailReminder";
 import { routes, staticAssetsPrefix } from "@/lib/config";
 
 const title = {
@@ -29,8 +28,8 @@ const cardSection = {
 };
 
 const cardHotSelfie = {
-  width: "194px",
-  height: "194",
+  width: "216px",
+  height: "216px",
   borderRadius: "24px",
 };
 
@@ -67,7 +66,7 @@ const cardText = {
 };
 
 const cardUserWrapper = {
-  padding: "0 0 0 40px",
+  padding: "0 0 0 20px",
 };
 
 export const RecallHotSelfie = ({
@@ -100,7 +99,7 @@ export const RecallHotSelfie = ({
             <Column>
               <Img
                 style={cardHotSelfie}
-                src={`${staticAssetsPrefix}/static/hot_selfie.png`}
+                src={`${staticAssetsPrefix}/static/hot_selfie_mask.png`}
                 alt="hot selfie"
               />
             </Column>
