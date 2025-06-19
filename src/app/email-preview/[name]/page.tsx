@@ -3,6 +3,8 @@ import path from "path";
 import fs from "fs";
 import EmailPreviewClient from "@/components/pages/EmailPreviewClient";
 
+export const runtime = "edge"; // 使用Edge Runtime
+
 export default async function EmailPreview({
   params,
 }: {
