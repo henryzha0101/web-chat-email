@@ -9,9 +9,10 @@ export default function EmailPreviewHome() {
     .readdirSync(emailDir)
     .filter((file) => file.endsWith(".tsx"));
 
+  const previewEmailUrl = process.env.NEXT_PUBLIC_PREVIEW_EMAIL_URL ?? "";
   return (
     <div className="p-4">
-      <h1 className="text-2xl mb-4">📧 Email Preview</h1>
+      <h1 className="text-2xl mb-4">📧 Email Templates</h1>
       <ul className="list-disc list-inside">
         {files.map((file) => {
           const name = file.replace(".tsx", "");
@@ -28,15 +29,14 @@ export default function EmailPreviewHome() {
         })}
       </ul>
 
-      <p className="mt-4">
-        <span>Preview Email URL(for a more realistic email effect): </span>
-        <Link
-          href={process.env.NEXT_PUBLIC_PREVIEW_EMAIL_URL ?? ""}
-          className="text-blue-600 underline"
-        >
-          {process.env.NEXT_PUBLIC_PREVIEW_EMAIL_URL}
-        </Link>
-      </p>
+      {previewEmailUrl && (
+        <p className="mt-4">
+          <span>Preview Email URL(for a more realistic email effect): </span>
+          <Link href={previewEmailUrl} className="text-blue-600 underline">
+            {previewEmailUrl}
+          </Link>
+        </p>
+      )}
     </div>
   );
 }
