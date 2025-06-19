@@ -1,13 +1,15 @@
-// src/app/email-preview/page.tsx
-import fs from "fs";
-import path from "path";
 import Link from "next/link";
+import { emailTemplates } from "@/emails";
+
+export const runtime = "edge"; // 使用Edge Runtime，适用于 Cloudflare Pages
 
 export default function EmailPreviewHome() {
-  const emailDir = path.join(process.cwd(), "src", "emails");
-  const files = fs
-    .readdirSync(emailDir)
-    .filter((file) => file.endsWith(".tsx"));
+  // const emailDir = path.join(process.cwd(), "src", "emails");
+  // const files = fs
+  //   .readdirSync(emailDir)
+  //   .filter((file) => file.endsWith(".tsx"));
+  // 使用静态导出的邮件模板列表，适用于 Cloudflare Pages 边缘环境
+  const files = emailTemplates.map((template) => `${template}.tsx`);
 
   const previewEmailUrl = process.env.NEXT_PUBLIC_PREVIEW_EMAIL_URL ?? "";
   return (

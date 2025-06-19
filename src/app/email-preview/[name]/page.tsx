@@ -1,9 +1,8 @@
 import { render } from "@react-email/render";
-import path from "path";
-import fs from "fs";
 import EmailPreviewClient from "@/components/pages/EmailPreviewClient";
+import { emailTemplates } from "@/emails";
 
-export const runtime = "edge"; // 使用Edge Runtime
+// export const runtime = "edge"; // 使用Edge Runtime，适用于 Cloudflare Pages
 
 export default async function EmailPreview({
   params,
@@ -41,8 +40,10 @@ export default async function EmailPreview({
       <EmailComponent data={bePlaceHolder} className="w-full" />
     );
 
-    const emailDir = path.join(process.cwd(), "src/emails");
-    const files = fs.readdirSync(emailDir).filter((f) => f.endsWith(".tsx"));
+    // const emailDir = path.join(process.cwd(), "src/emails");
+    // const files = fs.readdirSync(emailDir).filter((f) => f.endsWith(".tsx"));
+    // 使用静态导出的邮件模板列表，适用于 Cloudflare Pages 边缘环境
+    const files = emailTemplates.map((template) => `${template}.tsx`);
 
     return (
       <div className="flex h-screen">
