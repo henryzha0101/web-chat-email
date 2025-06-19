@@ -94,3 +94,5 @@ export async function POST(request: Request) {
 
 // 备注: Next.js 19 目前还未正式发布稳定版。
 // 此代码是基于最新的Next.js App Router（13.4+）稳定版的最佳实践编写的，它将与未来的版本（包括19）保持良好的兼容性。
+
+export const runtime = "edge"; // 使用Edge Runtime
