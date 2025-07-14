@@ -11,6 +11,7 @@ import EmailHeader from "@/components/email/components/EmailHeader";
 import EmailFooter from "@/components/email/components/EmailFooter";
 import EmailContainer from "@/components/email/components/EmailContainer";
 import EmailButton from "@/components/email/components/EmailButton";
+import EmailTrackingPixel from "@/components/email/components/EmailTrackingPixel";
 import { websiteName, routes, staticAssetsPrefix } from "@/lib/config";
 
 const heading = {
@@ -104,12 +105,10 @@ interface WelcomeToProps {
   rid: string;
   userId: string;
   userCardImg?: string;
+  trackingUrl?: string;
 }
 
-export const WelcomeTo = ({
-  rid,
-  userId,
-}: WelcomeToProps) => {
+export const WelcomeTo = ({ rid, userId, trackingUrl }: WelcomeToProps) => {
   return (
     <EmailContainer
       title={`Welcome to ${websiteName}!`}
@@ -117,6 +116,9 @@ export const WelcomeTo = ({
       bodyStyle={{
         width: "624px",
       }}
+      trackingPixel={
+        trackingUrl ? <EmailTrackingPixel src={trackingUrl} /> : undefined
+      }
     >
       <EmailHeader />
       <Section>
@@ -197,15 +199,17 @@ const beRender = {
   userId: "61912225442",
   userCardImg:
     "https://pub-1dd2cb98fc55487b8f184cb1b0017c12.r2.dev/character/album/1921137325988651008/picture/card.jpeg",
+  trackingUrl: "https://example.com/track?id=test-tracking-id",
 };
 
 export const bePlaceHolder = {
   rid: "{{rid}}",
   userId: "{{userId}}",
   userCardImg: "{{userCardImg}}",
+  trackingUrl: "{{trackingUrl}}",
 };
 
-export default function WelcomeToPage({data}: {data: WelcomeToProps}) {
+export default function WelcomeToPage({ data }: { data: WelcomeToProps }) {
   const props = data ?? beRender;
   return <WelcomeTo {...props} />;
 }

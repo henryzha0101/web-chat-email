@@ -3,6 +3,7 @@ import EmailHeader from "@/components/email/components/EmailHeader";
 import EmailFooter from "@/components/email/components/EmailFooter";
 import EmailContainer from "@/components/email/components/EmailContainer";
 import { routes, websiteName } from "@/lib/config";
+import EmailTrackingPixel from "@/components/email/components/EmailTrackingPixel";
 
 const title = {
   color: "#F8FAFC",
@@ -66,6 +67,7 @@ interface PayCompletedProps {
   transactionDate: string;
   purchaseCost: string;
   vatAmount: string;
+  trackingUrl?: string;
 }
 
 export const PayCompleted = ({
@@ -76,6 +78,7 @@ export const PayCompleted = ({
   transactionDate,
   purchaseCost,
   vatAmount,
+  trackingUrl,
 }: PayCompletedProps) => {
   console.log("--props", "opopop");
   return (
@@ -85,6 +88,9 @@ export const PayCompleted = ({
       bodyStyle={{
         width: "624px",
       }}
+      trackingPixel={
+        trackingUrl ? <EmailTrackingPixel src={trackingUrl} /> : undefined
+      }
     >
       <EmailHeader />
       <Section>
@@ -147,6 +153,7 @@ const beRender = {
   transactionDate: "21/3/2025",
   purchaseCost: "13.99 USD",
   vatAmount: "0 USD",
+  trackingUrl: "https://example.com/track?id=test-tracking-id",
 };
 
 export const bePlaceHolder = {
@@ -157,9 +164,14 @@ export const bePlaceHolder = {
   transactionDate: "{{transactionDate}}",
   purchaseCost: "{{purchaseCost}}",
   vatAmount: "{{vatAmount}}",
+  trackingUrl: "{{trackingUrl}}",
 };
 
-export default function PayCompletedPage({data}: {data: PayCompletedProps}) {
+export default function PayCompletedPage({
+  data,
+}: {
+  data: PayCompletedProps;
+}) {
   const props = data ?? beRender;
   return <PayCompleted {...props} />;
 }

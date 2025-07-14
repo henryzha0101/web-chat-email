@@ -3,6 +3,7 @@ import EmailHeader from "@/components/email/components/EmailHeader";
 import EmailFooter from "@/components/email/components/EmailFooter";
 import EmailContainer from "@/components/email/components/EmailContainer";
 import EmailButton from "@/components/email/components/EmailButton";
+import EmailTrackingPixel from "@/components/email/components/EmailTrackingPixel";
 // import EmailReminder from "@/components/email/components/EmailReminder";
 import { routes, staticAssetsPrefix } from "@/lib/config";
 
@@ -50,16 +51,21 @@ const buttonWrapper = {
 interface RecallInterestingProps {
   rid: string;
   userId: string;
+  trackingUrl?: string;
 }
 
 export const RecallInteresting = ({
   rid,
   userId,
+  trackingUrl,
 }: RecallInterestingProps) => {
   return (
     <EmailContainer
       title={`I bet you wanna see this 😉`}
       preview="I bet you wanna see this 😉"
+      trackingPixel={
+        trackingUrl ? <EmailTrackingPixel src={trackingUrl} /> : undefined
+      }
     >
       <EmailHeader />
       <Section>
@@ -84,14 +90,20 @@ export const RecallInteresting = ({
 const beRender = {
   rid: "test-rid",
   userId: "61912225442",
+  trackingUrl: "https://example.com/track?id=test-tracking-id",
 };
 
 export const bePlaceHolder = {
   rid: "{{rid}}",
   userId: "{{userId}}",
+  trackingUrl: "{{trackingUrl}}",
 };
 
-export default function RecallInterestingPage({data}: {data: RecallInterestingProps}) {
+export default function RecallInterestingPage({
+  data,
+}: {
+  data: RecallInterestingProps;
+}) {
   const props = data ?? beRender;
   return <RecallInteresting {...props} />;
 }

@@ -3,6 +3,7 @@ import EmailHeader from "@/components/email/components/EmailHeader";
 import EmailFooter from "@/components/email/components/EmailFooter";
 import EmailContainer from "@/components/email/components/EmailContainer";
 import EmailButton from "@/components/email/components/EmailButton";
+import EmailTrackingPixel from "@/components/email/components/EmailTrackingPixel";
 // import EmailReminder from "@/components/email/components/EmailReminder";
 import { routes, staticAssetsPrefix } from "@/lib/config";
 
@@ -59,6 +60,7 @@ interface RecallNewMessageProps {
   rBgImg: string;
   userId: string;
   userName: string;
+  trackingUrl?: string;
 }
 
 export const RecallNewMessage = ({
@@ -67,11 +69,15 @@ export const RecallNewMessage = ({
   rBgImg,
   userId,
   userName,
+  trackingUrl,
 }: RecallNewMessageProps) => {
   return (
     <EmailContainer
       title={`${userName}, guess what? You've got a new message from ${rName}`}
       preview="Surprise inside: check it out"
+      trackingPixel={
+        trackingUrl ? <EmailTrackingPixel src={trackingUrl} /> : undefined
+      }
     >
       <EmailHeader />
       <Section>
@@ -104,6 +110,7 @@ const beRender = {
     "https://pub-1dd2cb98fc55487b8f184cb1b0017c12.r2.dev/character/album/1921137325988651008/picture/background.png",
   userId: "61912225442",
   userName: "Henry",
+  trackingUrl: "https://example.com/track?id=test-tracking-id",
 };
 
 export const bePlaceHolder = {
@@ -112,9 +119,14 @@ export const bePlaceHolder = {
   rBgImg: "{{rBgImg}}",
   userId: "{{userId}}",
   userName: "{{userName}}",
+  trackingUrl: "{{trackingUrl}}",
 };
 
-export default function RecallNewMessagePage({data}: {data: RecallNewMessageProps}) {
+export default function RecallNewMessagePage({
+  data,
+}: {
+  data: RecallNewMessageProps;
+}) {
   const props = data ?? beRender;
   return <RecallNewMessage {...props} />;
 }

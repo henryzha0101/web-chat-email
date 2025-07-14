@@ -6,6 +6,7 @@ import EmailFooter from "@/components/email/components/EmailFooter";
 import EmailContainer from "@/components/email/components/EmailContainer";
 import EmailButton from "@/components/email/components/EmailButton";
 import EmailReminder from "@/components/email/components/EmailReminder";
+import EmailTrackingPixel from "@/components/email/components/EmailTrackingPixel";
 import { websiteName, routes } from "@/lib/config";
 
 const confirmText = {
@@ -41,16 +42,17 @@ const secureText = {
 interface VerifyEmailProps {
   rid: string;
   userId: string;
+  trackingUrl?: string;
 }
 
-export const VerifyEmail = ({
-  rid,
-  userId,
-}: VerifyEmailProps) => {
+export const VerifyEmail = ({ rid, userId, trackingUrl }: VerifyEmailProps) => {
   return (
     <EmailContainer
       title="Welcome! Please confirm your email."
       preview="Please confirm your email address to claim your welcome bonus"
+      trackingPixel={
+        trackingUrl ? <EmailTrackingPixel src={trackingUrl} /> : undefined
+      }
     >
       <EmailHeader />
       <Section>
@@ -73,14 +75,16 @@ export const VerifyEmail = ({
 const beRender = {
   rid: "test-rid",
   userId: "61912225442",
+  trackingUrl: "https://example.com/track?id=test-tracking-id",
 };
 
 export const bePlaceHolder = {
   rid: "{{rid}}",
   userId: "{{userId}}",
+  trackingUrl: "{{trackingUrl}}",
 };
 
-export default function VerifyEmailPage({data}: {data: VerifyEmailProps}) {
+export default function VerifyEmailPage({ data }: { data: VerifyEmailProps }) {
   const props = data ?? beRender;
   return <VerifyEmail {...props} />;
 }

@@ -3,6 +3,7 @@ import EmailHeader from "@/components/email/components/EmailHeader";
 import EmailFooter from "@/components/email/components/EmailFooter";
 import EmailContainer from "@/components/email/components/EmailContainer";
 import EmailButton from "@/components/email/components/EmailButton";
+import EmailTrackingPixel from "@/components/email/components/EmailTrackingPixel";
 import { routes, staticAssetsPrefix } from "@/lib/config";
 
 const title = {
@@ -71,16 +72,20 @@ const cardUserWrapper = {
 
 interface RecallHotSelfieProps {
   rid: string;
+  rName: string;
   rAvatar: string;
   userId: string;
   userName: string;
+  trackingUrl?: string;
 }
 
 export const RecallHotSelfie = ({
   rid,
+  rName,
   rAvatar,
   userId,
   userName,
+  trackingUrl,
 }: RecallHotSelfieProps) => {
   return (
     <EmailContainer
@@ -89,6 +94,9 @@ export const RecallHotSelfie = ({
       bodyStyle={{
         width: "658px",
       }}
+      trackingPixel={
+        trackingUrl ? <EmailTrackingPixel src={trackingUrl} /> : undefined
+      }
     >
       <EmailHeader />
       <Section>
@@ -111,7 +119,7 @@ export const RecallHotSelfie = ({
                   <Img style={cardAvatar} src={rAvatar} alt="r avatar" />
                 </Column>
                 <Column style={{ height: "48px", margin: "0px" }}>
-                  <Text style={cardUserName}>{userName}</Text>
+                  <Text style={cardUserName}>{rName}</Text>
                 </Column>
               </Row>
               <Text style={cardText}>has just sent you a new picture</Text>
@@ -130,20 +138,28 @@ export const RecallHotSelfie = ({
 
 const beRender = {
   rid: "test-rid",
+  rName: "{{rName}}",
   rAvatar:
     "https://pub-1dd2cb98fc55487b8f184cb1b0017c12.r2.dev/character/album/1921137325988651008/picture/avatar.jpeg",
   userId: "61912225442",
   userName: "henry",
+  trackingUrl: "https://example.com/track?id=test-tracking-id",
 };
 
 export const bePlaceHolder = {
   rid: "{{rid}}",
+  rName: "{{rName}}",
   rAvatar: "{{rAvatar}}",
   userId: "{{userId}}",
   userName: "{{userName}}",
+  trackingUrl: "{{trackingUrl}}",
 };
 
-export default function RecallHotSelfiePage({data}: {data: RecallHotSelfieProps}) {
+export default function RecallHotSelfiePage({
+  data,
+}: {
+  data: RecallHotSelfieProps;
+}) {
   const props = data ?? beRender;
   return <RecallHotSelfie {...props} />;
 }

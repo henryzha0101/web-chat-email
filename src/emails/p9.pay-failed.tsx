@@ -3,6 +3,7 @@ import EmailHeader from "@/components/email/components/EmailHeader";
 import EmailFooter from "@/components/email/components/EmailFooter";
 import EmailContainer from "@/components/email/components/EmailContainer";
 import EmailButton from "@/components/email/components/EmailButton";
+import EmailTrackingPixel from "@/components/email/components/EmailTrackingPixel";
 // import EmailReminder from "@/components/email/components/EmailReminder";
 import { routes, staticAssetsPrefix, websiteName } from "@/lib/config";
 
@@ -68,13 +69,17 @@ const tipStep = {
 interface PayFailedProps {
   rid: string;
   userId: string;
+  trackingUrl?: string;
 }
 
-export const PayFailed = ({ rid, userId }: PayFailedProps) => {
+export const PayFailed = ({ rid, userId, trackingUrl }: PayFailedProps) => {
   return (
     <EmailContainer
       title={`Looks like your payment has been rejected`}
       preview="Important: Your recent payment has been declined. Please take action."
+      trackingPixel={
+        trackingUrl ? <EmailTrackingPixel src={trackingUrl} /> : undefined
+      }
     >
       <EmailHeader />
       <Section>
@@ -122,14 +127,16 @@ export const PayFailed = ({ rid, userId }: PayFailedProps) => {
 const beRender = {
   rid: "test-rid",
   userId: "61912225442",
+  trackingUrl: "https://example.com/track?id=test-tracking-id",
 };
 
 export const bePlaceHolder = {
   rid: "{{rid}}",
   userId: "{{userId}}",
+  trackingUrl: "{{trackingUrl}}",
 };
 
-export default function PayFailedPage({data}: {data: PayFailedProps}) {
+export default function PayFailedPage({ data }: { data: PayFailedProps }) {
   const props = data ?? beRender;
   return <PayFailed {...props} />;
 }

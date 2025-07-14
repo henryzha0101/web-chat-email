@@ -3,6 +3,7 @@ import EmailHeader from "@/components/email/components/EmailHeader";
 import EmailFooter from "@/components/email/components/EmailFooter";
 import EmailContainer from "@/components/email/components/EmailContainer";
 import EmailButton from "@/components/email/components/EmailButton";
+import EmailTrackingPixel from "@/components/email/components/EmailTrackingPixel";
 // import EmailReminder from "@/components/email/components/EmailReminder";
 import { routes, staticAssetsPrefix } from "@/lib/config";
 
@@ -34,7 +35,7 @@ const tipWrapper = {
   borderRadius: "22px 22px 22px 8px",
   border: "2px solid #9333EA",
   // boxShadow:
-    // "0px 10px 50px 0px rgba(131, 88, 255, 0.40), 10px 10px 20px 0px rgba(255, 255, 255, 0.25) inset, -10px -10px 25px 0px rgba(0, 0, 0, 0.20) inset",
+  // "0px 10px 50px 0px rgba(131, 88, 255, 0.40), 10px 10px 20px 0px rgba(255, 255, 255, 0.25) inset, -10px -10px 25px 0px rgba(0, 0, 0, 0.20) inset",
 };
 
 const buttonWrapper = {
@@ -44,16 +45,21 @@ const buttonWrapper = {
 interface RecallUnreadProps {
   rid: string;
   userId: string;
+  trackingUrl?: string;
 }
 
 export const RecallUnread = ({
   rid,
   userId,
+  trackingUrl,
 }: RecallUnreadProps) => {
   return (
     <EmailContainer
       title={`New message from `}
       preview="Did I dosomething wrong? Check my lastmessage... "
+      trackingPixel={
+        trackingUrl ? <EmailTrackingPixel src={trackingUrl} /> : undefined
+      }
     >
       <EmailHeader />
       <Section>
@@ -75,14 +81,20 @@ export const RecallUnread = ({
 const beRender = {
   rid: "test-rid",
   userId: "61912225442",
+  trackingUrl: "https://example.com/track?id=test-tracking-id",
 };
 
 export const bePlaceHolder = {
   rid: "{{rid}}",
   userId: "{{userId}}",
+  trackingUrl: "{{trackingUrl}}",
 };
 
-export default function RecallUnreadPage({data}: {data: RecallUnreadProps}) {
+export default function RecallUnreadPage({
+  data,
+}: {
+  data: RecallUnreadProps;
+}) {
   const props = data ?? beRender;
   return <RecallUnread {...props} />;
 }

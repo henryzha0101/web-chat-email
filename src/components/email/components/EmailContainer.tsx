@@ -7,6 +7,7 @@ interface EmailContainerProps {
   preview?: string;
   bodyStyle?: React.CSSProperties;
   children: React.ReactNode;
+  trackingPixel?: React.ReactNode;
 }
 
 const EmailContainer = ({
@@ -14,6 +15,7 @@ const EmailContainer = ({
   preview,
   bodyStyle,
   children,
+  trackingPixel,
 }: EmailContainerProps) => (
   <Html lang="en" dir="ltr">
     <Head>
@@ -23,6 +25,9 @@ const EmailContainer = ({
       {preview && <Preview>{preview}</Preview>}
 
       <Container style={{ ...container, ...bodyStyle }}>{children}</Container>
+
+      {/* 追踪像素放在Body最后，Container外面 - 这是最佳实践 */}
+      {trackingPixel}
     </Body>
   </Html>
 );

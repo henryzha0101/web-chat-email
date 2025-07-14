@@ -1,16 +1,10 @@
-import {
-  Section,
-  Text,
-  Row,
-  Img,
-  Column,
-  Link,
-} from "@react-email/components";
+import { Section, Text, Row, Img, Column, Link } from "@react-email/components";
 import EmailHeader from "@/components/email/components/EmailHeader";
 import EmailFooter from "@/components/email/components/EmailFooter";
 import EmailContainer from "@/components/email/components/EmailContainer";
 import EmailButton from "@/components/email/components/EmailButton";
 import EmailReminder from "@/components/email/components/EmailReminder";
+import EmailTrackingPixel from "@/components/email/components/EmailTrackingPixel";
 import { websiteName, routes, staticAssetsPrefix } from "@/lib/config";
 
 const title = {
@@ -112,16 +106,21 @@ const linkImgColumn = {
 interface PremiumDiscountsProps {
   rid: string;
   userId: string;
+  trackingUrl?: string;
 }
 
 export const PremiumDiscounts = ({
   rid,
   userId,
+  trackingUrl,
 }: PremiumDiscountsProps) => {
   return (
     <EmailContainer
       title={`Up to 70% OFF Your Premium Experience!`}
       preview="Your exclusive discount is waiting unlock Premium features today!"
+      trackingPixel={
+        trackingUrl ? <EmailTrackingPixel src={trackingUrl} /> : undefined
+      }
     >
       <EmailHeader />
       <Section>
@@ -134,7 +133,11 @@ export const PremiumDiscounts = ({
             <Text style={linkTitle}>Get the Full Premium Experience!</Text>
             <Row style={{ margin: "24px 0 0" }}>
               <Column style={linkImgColumn}>
-                <Img style={linkImg} src={`${staticAssetsPrefix}/static/smile.png`} alt="smile" />
+                <Img
+                  style={linkImg}
+                  src={`${staticAssetsPrefix}/static/smile.png`}
+                  alt="smile"
+                />
               </Column>
               <Column>
                 <Text style={linkSubTitle}>Exclusive, personalized photos</Text>
@@ -182,14 +185,20 @@ export const PremiumDiscounts = ({
 const beRender = {
   rid: "test-rid",
   userId: "61912225442",
+  trackingUrl: "https://example.com/track?id=test-tracking-id",
 };
 
 export const bePlaceHolder = {
   rid: "{{rid}}",
   userId: "{{userId}}",
+  trackingUrl: "{{trackingUrl}}",
 };
 
-export default function PremiumDiscountsPage({data}: {data: PremiumDiscountsProps}) {
+export default function PremiumDiscountsPage({
+  data,
+}: {
+  data: PremiumDiscountsProps;
+}) {
   const props = data ?? beRender;
   return <PremiumDiscounts {...props} />;
 }
