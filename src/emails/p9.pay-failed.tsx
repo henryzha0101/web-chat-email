@@ -5,7 +5,7 @@ import EmailContainer from "@/components/email/components/EmailContainer";
 import EmailButton from "@/components/email/components/EmailButton";
 import EmailTrackingPixel from "@/components/email/components/EmailTrackingPixel";
 // import EmailReminder from "@/components/email/components/EmailReminder";
-import { routes, staticAssetsPrefix, websiteName } from "@/lib/config";
+import { routes, staticAssetsPrefix } from "@/lib/config";
 
 const title = {
   color: "#F8FAFC",
@@ -75,8 +75,8 @@ interface PayFailedProps {
 export const PayFailed = ({ rid, userId, trackingUrl }: PayFailedProps) => {
   return (
     <EmailContainer
-      title={`Looks like your payment has been rejected`}
-      preview="Important: Your recent payment has been declined. Please take action."
+      title={`Action Required: Your Payment Failed`}
+      preview="Please update your billing info to continue your subscription."
       trackingPixel={
         trackingUrl ? <EmailTrackingPixel src={trackingUrl} /> : undefined
       }
@@ -84,11 +84,11 @@ export const PayFailed = ({ rid, userId, trackingUrl }: PayFailedProps) => {
       <EmailHeader />
       <Section>
         <Text style={title}>
-          Unfortunately your <br />{" "}
-          <strong style={titleStrong}>payment has been declined</strong>
+          Your Payment Was <br />{" "}
+          <strong style={titleStrong}>Unsuccessful</strong>
         </Text>
         <Text style={tip}>
-          Let’s start with these troubleshooting steps:
+          We had trouble with your recent payment. Here&apos;s how to fix it:
           {/* Please check your payment information and try again. */}
         </Text>
         <Section>
@@ -98,7 +98,8 @@ export const PayFailed = ({ rid, userId, trackingUrl }: PayFailedProps) => {
             </Column>
             <Column style={stepTextWrapper}>
               <Text style={tipStep}>
-                Contact your bank to understand what happened and take action.
+                Check with your bank: Contact your bank to ensure there are no
+                issues on their end.
               </Text>
             </Column>
           </Row>
@@ -108,15 +109,14 @@ export const PayFailed = ({ rid, userId, trackingUrl }: PayFailedProps) => {
             </Column>
             <Column style={stepTextWrapper}>
               <Text style={tipStep}>
-                Provide an alternative payment method. This is often the best
-                way to fix payment issues. Simply click below to update your
-                payment and enjoy {websiteName}
+                Try a different card: This almost always does the trick. Click
+                below to update your details and unlock your content.
               </Text>
             </Column>
           </Row>
         </Section>
         <EmailButton href={`${routes.support}`}>
-          Change Billing Info
+          Update Payment Info
         </EmailButton>
       </Section>
       <EmailFooter userId={userId} />

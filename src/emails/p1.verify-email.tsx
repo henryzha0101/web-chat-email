@@ -5,9 +5,9 @@ import EmailHeader from "@/components/email/components/EmailHeader";
 import EmailFooter from "@/components/email/components/EmailFooter";
 import EmailContainer from "@/components/email/components/EmailContainer";
 import EmailButton from "@/components/email/components/EmailButton";
-import EmailReminder from "@/components/email/components/EmailReminder";
+// import EmailReminder from "@/components/email/components/EmailReminder";
 import EmailTrackingPixel from "@/components/email/components/EmailTrackingPixel";
-import { websiteName, routes } from "@/lib/config";
+import { routes } from "@/lib/config";
 
 const confirmText = {
   color: "#F8FAFC",
@@ -48,23 +48,27 @@ interface VerifyEmailProps {
 export const VerifyEmail = ({ rid, userId, trackingUrl }: VerifyEmailProps) => {
   return (
     <EmailContainer
-      title="Welcome! Please confirm your email."
-      preview="Please confirm your email address to claim your welcome bonus"
+      title="One last step to get your bonus..."
+      preview="Activate your account and get your bonus neurons."
+      bodyStyle={{
+        width: "658px",
+      }}
       trackingPixel={
         trackingUrl ? <EmailTrackingPixel src={trackingUrl} /> : undefined
       }
     >
       <EmailHeader />
       <Section>
-        <Text style={confirmText}>Confirm your address</Text>
-        <Text style={neuronsText}>and get 10 neurons!</Text>
+        <Text style={confirmText}>Activate Your Account</Text>
+        <Text style={neuronsText}>and claim your welcome bonus! </Text>
         <Text style={secureText}>
-          Secure your account and stay in touch with {websiteName}
+          Click the button to confirm your email, secure your account, and start
+          chatting with your free 10 neurons.
         </Text>
         <EmailButton href={`${routes.emailConfirmation}?rid=${rid}`}>
-          Confirm &amp; Get Bonus
+          Activate &amp; Claim Bonus
         </EmailButton>
-        <EmailReminder />
+        {/* <EmailReminder /> */}
       </Section>
 
       <EmailFooter userId={userId} />

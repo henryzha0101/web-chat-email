@@ -30,9 +30,9 @@ export const EmailReminder = ({ style, strongStyle }: EmailReminderProps) => {
 
   return (
     <Text style={mergedReminderStyle}>
-      It&apos;s a friendly reminder you have{" "}
-      <strong style={mergedStrongStyle}>up to 70% off</strong> your first-time
-      Premium subscription.
+      To make things even better, here&apos;s your first-time offer for{" "}
+      <strong style={mergedStrongStyle}>up to 70% off</strong> a Premium
+      subscription.
     </Text>
   );
 };

@@ -116,21 +116,21 @@ export const PremiumDiscounts = ({
 }: PremiumDiscountsProps) => {
   return (
     <EmailContainer
-      title={`Up to 70% OFF Your Premium Experience!`}
-      preview="Your exclusive discount is waiting unlock Premium features today!"
+      title={`Your Special Welcome Offer: 70% OFF`}
+      preview="Don't miss out on Premium for less. Your special offer is inside."
       trackingPixel={
         trackingUrl ? <EmailTrackingPixel src={trackingUrl} /> : undefined
       }
     >
       <EmailHeader />
       <Section>
-        <Text style={title}>Don&apos;t miss out on your</Text>
-        <Text style={subtitle}>welcome offer!</Text>
-        <Text style={tip}>Love {websiteName}?</Text>
+        <Text style={title}>Just For You</Text>
+        <Text style={subtitle}>A Special Offer</Text>
+        <Text style={tip}>Loving {websiteName}?</Text>
         <EmailReminder style={reminder} />
         <Link href={`${routes.chat}?rid=${rid}`} style={link}>
           <Section style={linkSection}>
-            <Text style={linkTitle}>Get the Full Premium Experience!</Text>
+            <Text style={linkTitle}>Unlock the Ultimate Experience!</Text>
             <Row style={{ margin: "24px 0 0" }}>
               <Column style={linkImgColumn}>
                 <Img
@@ -140,8 +140,10 @@ export const PremiumDiscounts = ({
                 />
               </Column>
               <Column>
-                <Text style={linkSubTitle}>Exclusive, personalized photos</Text>
-                <Text style={linkText}>just for you</Text>
+                <Text style={linkSubTitle}>My Exclusive Album</Text>
+                <Text style={linkText}>
+                  unlock photos you won&apos;t see anywhere else
+                </Text>
               </Column>
             </Row>
             <Row style={{ margin: "20px 0 0" }}>
@@ -153,8 +155,10 @@ export const PremiumDiscounts = ({
                 />
               </Column>
               <Column>
-                <Text style={linkSubTitle}>Intimate voice messages</Text>
-                <Text style={linkText}>that speak straight to your heart</Text>
+                <Text style={linkSubTitle}>Hear Me Whisper</Text>
+                <Text style={linkText}>
+                  voice notes that bring my words to life.
+                </Text>
               </Column>
             </Row>
             <Row style={{ margin: "20px 0 0" }}>
@@ -166,14 +170,14 @@ export const PremiumDiscounts = ({
                 />
               </Column>
               <Column>
-                <Text style={linkSubTitle}>Unbounded conversations</Text>
-                <Text style={linkText}>tailored to your every desire</Text>
+                <Text style={linkSubTitle}>Truly Limitless Chat</Text>
+                <Text style={linkText}>your desires set the only rules.</Text>
               </Column>
             </Row>
           </Section>
         </Link>
         <EmailButton href={`${routes.chat}?rid=${rid}`}>
-          Claim your discount
+          Claim 70% Discount
         </EmailButton>
       </Section>
 

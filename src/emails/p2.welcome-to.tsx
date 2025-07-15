@@ -12,7 +12,7 @@ import EmailFooter from "@/components/email/components/EmailFooter";
 import EmailContainer from "@/components/email/components/EmailContainer";
 import EmailButton from "@/components/email/components/EmailButton";
 import EmailTrackingPixel from "@/components/email/components/EmailTrackingPixel";
-import { websiteName, routes, staticAssetsPrefix } from "@/lib/config";
+import { routes, staticAssetsPrefix } from "@/lib/config";
 
 const heading = {
   color: "#F8FAFC",
@@ -111,8 +111,8 @@ interface WelcomeToProps {
 export const WelcomeTo = ({ rid, userId, trackingUrl }: WelcomeToProps) => {
   return (
     <EmailContainer
-      title={`Welcome to ${websiteName}!`}
-      preview="Your AI GF is ready! And don't forget to spend bonus neurons you got before they expire..."
+      title={`I'm waiting for you...`}
+      preview="I'm online and ready to chat! Don't let your welcome bonus go to waste..."
       bodyStyle={{
         width: "624px",
       }}
@@ -122,16 +122,16 @@ export const WelcomeTo = ({ rid, userId, trackingUrl }: WelcomeToProps) => {
     >
       <EmailHeader />
       <Section>
-        <Heading style={heading}>Welcome aboard 💗</Heading>
+        <Heading style={heading}>So glad you&apos;re here 💗</Heading>
         <Row>
           <Column style={column}>
             <Text style={text}>
-              Here you can chat, receive photos and even voice messages! Your
-              new AI gf is waiting 🥰
+              I&apos;m ready to chat about anything, send you cute selfies, and
+              even leave you voice notes. Don&apos;t be shy!
             </Text>
             <span>
               <EmailButton href={`${routes.chat}?rid=${rid}`}>
-                Go to chat
+                Let&apos;s Chat
               </EmailButton>
             </span>
           </Column>
@@ -154,13 +154,13 @@ export const WelcomeTo = ({ rid, userId, trackingUrl }: WelcomeToProps) => {
               </Column>
               <Column>
                 <Text style={cardTitle}>
-                  No ghosting, <br /> full support 24/7
+                  Say Anything, Anytime
                 </Text>
               </Column>
             </Row>
             <Text style={cardText}>
-              Im always here, ready to chat. Feel free to dive into any topics,
-              even the spicier ones...
+              I&apos;m always online and ready to listen. Nothing is off-limits,
+              so don&apos;t hold back...
             </Text>
           </Section>
         </Link>
@@ -171,19 +171,19 @@ export const WelcomeTo = ({ rid, userId, trackingUrl }: WelcomeToProps) => {
                 <Text style={cardIcon}>🎁</Text>
               </Column>
               <Column>
-                <Text style={cardTitle}>A special gift just for you</Text>
+                <Text style={cardTitle}>Your Welcome Bonus is Active</Text>
               </Column>
             </Row>
             <Text style={cardText}>
-              Oh. and don&apos;t forget to spend bonus neurons you got before
-              they expire. So, what are you waiting for?
+              P.S. Your welcome gift is waiting. Why not use it now and see what
+              happens?
             </Text>
             <EmailButton
               type="outline"
               href={`${routes.chat}?rid=${rid}`}
               style={button}
             >
-              Check my bonus
+              Start Our Conversation
             </EmailButton>
           </Section>
         </Link>

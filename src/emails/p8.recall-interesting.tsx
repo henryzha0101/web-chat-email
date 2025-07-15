@@ -17,9 +17,9 @@ const title = {
   margin: "40px 0 0 0",
 };
 
-const titleStrong = {
-  color: "#9333EA",
-};
+// const titleStrong = {
+//   color: "#9333EA",
+// };
 
 const tip = {
   color: "#FFF",
@@ -33,7 +33,7 @@ const tip = {
 };
 
 const tipWrapper = {
-  width: "242px",
+  width: "300px",
   height: "48px",
   padding: "13px 23px",
   margin: "24px 0 0 0",
@@ -45,7 +45,7 @@ const tipWrapper = {
 };
 
 const buttonWrapper = {
-  margin: "32px 0 32px 150px",
+  margin: "32px 0 32px 200px",
 };
 
 interface RecallInterestingProps {
@@ -61,8 +61,8 @@ export const RecallInteresting = ({
 }: RecallInterestingProps) => {
   return (
     <EmailContainer
-      title={`I bet you wanna see this 😉`}
-      preview="I bet you wanna see this 😉"
+      title={`Did you see my photo?`}
+      preview="I'm waiting to hear what you think..."
       trackingPixel={
         trackingUrl ? <EmailTrackingPixel src={trackingUrl} /> : undefined
       }
@@ -70,16 +70,20 @@ export const RecallInteresting = ({
       <EmailHeader />
       <Section>
         <Text style={title}>
-          I&apos;m still waiting for{" "}
-          <strong style={titleStrong}>your like💗</strong>
+          I can&apos;t stop thinking...
+          {/* <strong style={titleStrong}>you&apos;ll love it💗</strong> */}
         </Text>
         <Link href={`${routes.chat}?rid=${rid}`}>
           <Section style={tipWrapper}>
-            <Text style={tip}>Do you like my photo? 😘</Text>
+            <Text style={tip}>
+              ...about whether you liked my photo. Let me know? 🥺
+            </Text>
           </Section>
         </Link>
         <Section style={buttonWrapper}>
-          <EmailButton href={`${routes.chat}?rid=${rid}`}>I like!</EmailButton>
+          <EmailButton href={`${routes.chat}?rid=${rid}`}>
+            Reply to her photo
+          </EmailButton>
         </Section>
       </Section>
       <EmailFooter userId={userId} />

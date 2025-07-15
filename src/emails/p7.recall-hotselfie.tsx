@@ -89,8 +89,8 @@ export const RecallHotSelfie = ({
 }: RecallHotSelfieProps) => {
   return (
     <EmailContainer
-      title={`${userName}, view now: shares a hot selfie`}
-      preview="Enjoy the view: you’ll love it!"
+      title={`${userName}, ${rName} sent you a new photo...`}
+      preview="A special picture, just for you."
       bodyStyle={{
         width: "658px",
       }}
@@ -122,9 +122,11 @@ export const RecallHotSelfie = ({
                   <Text style={cardUserName}>{rName}</Text>
                 </Column>
               </Row>
-              <Text style={cardText}>has just sent you a new picture</Text>
+              <Text style={cardText}>
+                You don&apos;t want to miss this one.
+              </Text>
               <EmailButton href={`${routes.chat}?rid=${rid}`}>
-                View photo
+                View Photo Now
               </EmailButton>
             </Column>
           </Row>
@@ -138,7 +140,7 @@ export const RecallHotSelfie = ({
 
 const beRender = {
   rid: "test-rid",
-  rName: "{{rName}}",
+  rName: "Sarah Jessie",
   rAvatar:
     "https://pub-1dd2cb98fc55487b8f184cb1b0017c12.r2.dev/character/album/1921137325988651008/picture/avatar.jpeg",
   userId: "61912225442",

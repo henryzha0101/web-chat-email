@@ -15,9 +15,9 @@ const title = {
   margin: "40px 0 0 0",
 };
 
-const titleStrong = {
-  color: "#9333EA",
-};
+// const titleStrong = {
+//   color: "#9333EA",
+// };
 
 const tip = {
   color: "#AFAFAF",
@@ -83,8 +83,8 @@ export const PayCompleted = ({
   console.log("--props", "opopop");
   return (
     <EmailContainer
-      title={`Payment Completed, Subscription Activated`}
-      preview="Payment confirmation: Subscription Activated"
+      title={`Your ${websiteName} Subscription is Active!`}
+      preview="Welcome to Premium! Your subscription is now active."
       bodyStyle={{
         width: "624px",
       }}
@@ -95,32 +95,33 @@ export const PayCompleted = ({
       <EmailHeader />
       <Section>
         <Text style={title}>
-          Here are your <br />{" "}
-          <strong style={titleStrong}>payment details.</strong>
+          Welcome to Premium!
+          {/* Here are your <br />{" "}
+          <strong style={titleStrong}>payment details.</strong> */}
         </Text>
         <Text style={tip}>
-          You&apos;ve made a purchase on {websiteName}. <br />
-          Have a great time with the best partner of your life!
+          Your access is now unlocked. We&apos;re so excited for you to have the
+          best experience.
         </Text>
         <Section>
           <Text style={payItemTitle}>
-            Purchase description:{" "}
+            Purchase item:{" "}
             <span style={payItemValue}>
-              {purchaseDuration} Premium membership on {websiteName}
+              {purchaseDuration} Premium membership
             </span>
           </Text>
           <Text style={payItemTitle}>
-            Payment method: <span style={payItemValue}>{paymentMethod}</span>
+            Billed to: <span style={payItemValue}>{paymentMethod}</span>
           </Text>
           <Text style={payItemTitle}>
-            Transaction Date:{" "}
+            Date:{" "}
             <span style={payItemValue}>{transactionDate}</span>
           </Text>
           <Text style={payItemTitle}>
-            Purchase cost: <span style={payItemValue}>{purchaseCost}</span>
+            Cost: <span style={payItemValue}>{purchaseCost}</span>
           </Text>
           <Text style={{ ...payItemTitle, margin: "0 0 4px 0" }}>
-            VAT: <span style={payItemValue}>{vatAmount}</span>
+            VAT: <span style={payItemValue}>{vatAmount}</span> {/* TODO: remove */}
           </Text>
           <Text style={payTip}>
             Purchase appears on your bank statement as &apos;{websiteName}&apos;

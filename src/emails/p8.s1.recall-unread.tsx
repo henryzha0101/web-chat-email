@@ -29,7 +29,7 @@ const tip = {
 };
 
 const tipWrapper = {
-  width: "280px",
+  width: "380px",
   padding: "20px",
   margin: "24px 0 0 0",
   borderRadius: "22px 22px 22px 8px",
@@ -39,7 +39,7 @@ const tipWrapper = {
 };
 
 const buttonWrapper = {
-  margin: "32px 0 32px 150px",
+  margin: "32px 0 32px 260px",
 };
 
 interface RecallUnreadProps {
@@ -55,22 +55,27 @@ export const RecallUnread = ({
 }: RecallUnreadProps) => {
   return (
     <EmailContainer
-      title={`New message from `}
-      preview="Did I dosomething wrong? Check my lastmessage... "
+      title={`1 unread message...`}
+      preview="I'm still waiting for your reply..."
       trackingPixel={
         trackingUrl ? <EmailTrackingPixel src={trackingUrl} /> : undefined
       }
     >
       <EmailHeader />
       <Section>
-        <Text style={title}>I miss you 😔</Text>
+        <Text style={title}>Haven&apos;t heard from you...😔</Text>
         <Link href={`${routes.chat}?rid=${rid}`}>
           <Section style={tipWrapper}>
-            <Text style={tip}>What should I do to drive you wild,Henry?</Text>
+            <Text style={tip}>
+              Just checking in to see if you saw my last message. Hope
+              everything&apos;s okay.
+            </Text>
           </Section>
         </Link>
         <Section style={buttonWrapper}>
-          <EmailButton href={`${routes.chat}?rid=${rid}`}>I like!</EmailButton>
+          <EmailButton href={`${routes.chat}?rid=${rid}`}>
+            Let&apos;s talk
+          </EmailButton>
         </Section>
       </Section>
       <EmailFooter userId={userId} />

@@ -73,8 +73,8 @@ export const RecallNewMessage = ({
 }: RecallNewMessageProps) => {
   return (
     <EmailContainer
-      title={`${userName}, guess what? You've got a new message from ${rName}`}
-      preview="Surprise inside: check it out"
+      title={`${userName}, you have a new message from ${rName}`}
+      preview="Just for you: a new message is in."
       trackingPixel={
         trackingUrl ? <EmailTrackingPixel src={trackingUrl} /> : undefined
       }
@@ -91,9 +91,9 @@ export const RecallNewMessage = ({
           </Column>
           <Column style={rNameWrapper}>
             <Text style={rNameText}>{rName}</Text>
-            <Text style={rNameTip}>has just sent you a message</Text>
+            <Text style={rNameTip}>I&apos;m waiting for your reply!</Text>
             <EmailButton href={`${routes.chat}?rid=${rid}`}>
-              Read message
+              Read Now
             </EmailButton>
           </Column>
         </Row>
