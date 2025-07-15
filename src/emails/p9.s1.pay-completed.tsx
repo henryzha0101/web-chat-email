@@ -80,7 +80,6 @@ export const PayCompleted = ({
   vatAmount,
   trackingUrl,
 }: PayCompletedProps) => {
-  console.log("--props", "opopop");
   return (
     <EmailContainer
       title={`Your ${websiteName} Subscription is Active!`}
@@ -114,14 +113,14 @@ export const PayCompleted = ({
             Billed to: <span style={payItemValue}>{paymentMethod}</span>
           </Text>
           <Text style={payItemTitle}>
-            Date:{" "}
-            <span style={payItemValue}>{transactionDate}</span>
+            Date: <span style={payItemValue}>{transactionDate}</span>
           </Text>
           <Text style={payItemTitle}>
             Cost: <span style={payItemValue}>{purchaseCost}</span>
           </Text>
           <Text style={{ ...payItemTitle, margin: "0 0 4px 0" }}>
-            VAT: <span style={payItemValue}>{vatAmount}</span> {/* TODO: remove */}
+            VAT: <span style={payItemValue}>{vatAmount}</span>{" "}
+            {/* TODO: remove */}
           </Text>
           <Text style={payTip}>
             Purchase appears on your bank statement as &apos;{websiteName}&apos;
