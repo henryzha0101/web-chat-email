@@ -25,8 +25,8 @@ const heading = {
 };
 
 const column = {
-  display: "flex",
-  flexDirection: "column" as const,
+  // display: "flex",
+  // flexDirection: "column" as const,
   // width: "60%",
 };
 
