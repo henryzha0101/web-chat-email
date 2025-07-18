@@ -4,6 +4,7 @@ import EmailFooter from "@/components/email/components/EmailFooter";
 import EmailContainer from "@/components/email/components/EmailContainer";
 import { routes, websiteName } from "@/lib/config";
 import EmailTrackingPixel from "@/components/email/components/EmailTrackingPixel";
+import { EMAIL_TYPES } from "@/lib/email-utm";
 
 const title = {
   color: "#F8FAFC",
@@ -60,7 +61,7 @@ const payTipLink = {
 };
 
 interface PayCompletedProps {
-  // rid: string;
+  rid: string;
   userId: string;
   purchaseDuration: string;
   paymentMethod: string;
@@ -71,7 +72,7 @@ interface PayCompletedProps {
 }
 
 export const PayCompleted = ({
-  // rid,
+  rid,
   userId,
   purchaseDuration,
   paymentMethod,
@@ -91,7 +92,11 @@ export const PayCompleted = ({
         trackingUrl ? <EmailTrackingPixel src={trackingUrl} /> : undefined
       }
     >
-      <EmailHeader />
+      <EmailHeader
+        emailType={EMAIL_TYPES.PAY_COMPLETED}
+        character_id={rid}
+        userId={userId}
+      />
       <Section>
         <Text style={title}>
           Welcome to Premium!
@@ -140,13 +145,18 @@ export const PayCompleted = ({
           </Text>
         </Section>
       </Section>
-      <EmailFooter userId={userId} showLegalLinks={true} />
+      <EmailFooter
+        emailType={EMAIL_TYPES.PAY_COMPLETED}
+        userId={userId}
+        characterId={rid}
+        showLegalLinks={true}
+      />
     </EmailContainer>
   );
 };
 
 const beRender = {
-  // rid: "test-rid",
+  rid: "test-rid",
   userId: "61912225442",
   purchaseDuration: `1 month`,
   paymentMethod: "456933******6290",
@@ -157,7 +167,7 @@ const beRender = {
 };
 
 export const bePlaceHolder = {
-  // rid: "{{rid}}",
+  rid: "{{rid}}",
   userId: "{{userId}}",
   purchaseDuration: "{{purchaseDuration}}",
   paymentMethod: "{{paymentMethod}}",

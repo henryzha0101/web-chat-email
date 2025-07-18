@@ -5,7 +5,8 @@ import EmailContainer from "@/components/email/components/EmailContainer";
 import EmailButton from "@/components/email/components/EmailButton";
 import EmailTrackingPixel from "@/components/email/components/EmailTrackingPixel";
 // import EmailReminder from "@/components/email/components/EmailReminder";
-import { routes, staticAssetsPrefix } from "@/lib/config";
+// import { routes, staticAssetsPrefix } from "@/lib/config";
+import { createChatLink, EMAIL_TYPES } from "@/lib/email-utm";
 
 const title = {
   color: "#F8FAFC",
@@ -79,7 +80,11 @@ export const RecallNewMessage = ({
         trackingUrl ? <EmailTrackingPixel src={trackingUrl} /> : undefined
       }
     >
-      <EmailHeader />
+      <EmailHeader
+        emailType={EMAIL_TYPES.NMR}
+        character_id={rid}
+        userId={userId}
+      />
       <Section>
         <Text style={title}>
           {userName}, you have a{" "}
@@ -87,18 +92,36 @@ export const RecallNewMessage = ({
         </Text>
         <Row>
           <Column style={rBgImgWrapper}>
-            <Img style={rBgImgStyle} src={rBgImg} alt={rName} />
+            <Link href={createChatLink({
+                utmContent: `${EMAIL_TYPES.NMR}-character_image`,
+                emailType: EMAIL_TYPES.NMR,
+                character_id: rid,
+                userId,
+              })}>
+              <Img style={rBgImgStyle} src={rBgImg} alt={rName} />
+            </Link>
           </Column>
           <Column style={rNameWrapper}>
             <Text style={rNameText}>{rName}</Text>
             <Text style={rNameTip}>I&apos;m waiting for your reply!</Text>
-            <EmailButton href={`${routes.chat}?rid=${rid}`}>
+            <EmailButton
+              href={createChatLink({
+                utmContent: `${EMAIL_TYPES.NMR}-read_message_button`,
+                emailType: EMAIL_TYPES.NMR,
+                character_id: rid,
+                userId,
+              })}
+            >
               Read Now
             </EmailButton>
           </Column>
         </Row>
       </Section>
-      <EmailFooter userId={userId} />
+      <EmailFooter
+        emailType={EMAIL_TYPES.NMR}
+        userId={userId}
+        characterId={rid}
+      />
     </EmailContainer>
   );
 };

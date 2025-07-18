@@ -5,7 +5,8 @@ import EmailContainer from "@/components/email/components/EmailContainer";
 import EmailButton from "@/components/email/components/EmailButton";
 import EmailReminder from "@/components/email/components/EmailReminder";
 import EmailTrackingPixel from "@/components/email/components/EmailTrackingPixel";
-import { websiteName, routes, staticAssetsPrefix } from "@/lib/config";
+import { websiteName, staticAssetsPrefix } from "@/lib/config";
+import { createChatLink, EMAIL_TYPES } from "@/lib/email-utm";
 
 const title = {
   color: "#F8FAFC",
@@ -122,13 +123,22 @@ export const PremiumDiscounts = ({
         trackingUrl ? <EmailTrackingPixel src={trackingUrl} /> : undefined
       }
     >
-      <EmailHeader />
+      <EmailHeader
+        emailType={EMAIL_TYPES.PREMIUM_DISCOUNTS}
+        character_id={rid}
+        userId={userId}
+      />
       <Section>
         <Text style={title}>Just For You</Text>
         <Text style={subtitle}>A Special Offer</Text>
         <Text style={tip}>Loving {websiteName}?</Text>
         <EmailReminder style={reminder} />
-        <Link href={`${routes.chat}?rid=${rid}`} style={link}>
+        <Link href={createChatLink({
+          utmContent: `${EMAIL_TYPES.PREMIUM_DISCOUNTS}-discount_70_button`,
+          emailType: EMAIL_TYPES.PREMIUM_DISCOUNTS,
+          character_id: rid,
+          userId,
+        })} style={link}>
           <Section style={linkSection}>
             <Text style={linkTitle}>Unlock the Ultimate Experience!</Text>
             <Row style={{ margin: "24px 0 0" }}>
@@ -176,12 +186,23 @@ export const PremiumDiscounts = ({
             </Row>
           </Section>
         </Link>
-        <EmailButton href={`${routes.chat}?rid=${rid}`}>
+        <EmailButton
+          href={createChatLink({
+            utmContent: `${EMAIL_TYPES.PREMIUM_DISCOUNTS}-discount_70_button`,
+            emailType: EMAIL_TYPES.PREMIUM_DISCOUNTS,
+            character_id: rid,
+            userId,
+          })}
+        >
           Claim 70% Discount
         </EmailButton>
       </Section>
 
-      <EmailFooter userId={userId} />
+      <EmailFooter
+        emailType={EMAIL_TYPES.PREMIUM_DISCOUNTS}
+        userId={userId}
+        characterId={rid}
+      />
     </EmailContainer>
   );
 };

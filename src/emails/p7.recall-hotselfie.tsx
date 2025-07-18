@@ -1,10 +1,11 @@
-import { Section, Text, Row, Img, Column } from "@react-email/components";
+import { Section, Text, Row, Img, Column, Link } from "@react-email/components";
 import EmailHeader from "@/components/email/components/EmailHeader";
 import EmailFooter from "@/components/email/components/EmailFooter";
 import EmailContainer from "@/components/email/components/EmailContainer";
 import EmailButton from "@/components/email/components/EmailButton";
 import EmailTrackingPixel from "@/components/email/components/EmailTrackingPixel";
-import { routes, staticAssetsPrefix } from "@/lib/config";
+import { staticAssetsPrefix } from "@/lib/config";
+import { createChatLink, EMAIL_TYPES } from "@/lib/email-utm";
 
 const title = {
   color: "#F8FAFC",
@@ -98,7 +99,11 @@ export const RecallHotSelfie = ({
         trackingUrl ? <EmailTrackingPixel src={trackingUrl} /> : undefined
       }
     >
-      <EmailHeader />
+      <EmailHeader
+        emailType={EMAIL_TYPES.SR}
+        character_id={rid}
+        userId={userId}
+      />
       <Section>
         <Text style={title}>
           {userName}, you have a <strong style={titleStrong}>new photo</strong>{" "}
@@ -107,25 +112,50 @@ export const RecallHotSelfie = ({
         <Section style={cardSection}>
           <Row>
             <Column>
-              <Img
-                style={cardHotSelfie}
-                src={`${staticAssetsPrefix}/static/hot_selfie_mask.png`}
-                alt="hot selfie"
-              />
+              <Link
+                href={createChatLink({
+                  utmContent: `${EMAIL_TYPES.SR}-masked_photo`,
+                  emailType: EMAIL_TYPES.SR,
+                  character_id: rid,
+                  userId,
+                })}
+              >
+                <Img
+                  style={cardHotSelfie}
+                  src={`${staticAssetsPrefix}/static/hot_selfie_mask.png`}
+                  alt="hot selfie"
+                />
+              </Link>
             </Column>
             <Column style={cardUserWrapper}>
-              <Row style={{ height: "48px" }}>
-                <Column style={cardAvatarWrapper}>
-                  <Img style={cardAvatar} src={rAvatar} alt="r avatar" />
-                </Column>
-                <Column style={{ height: "48px", margin: "0px" }}>
-                  <Text style={cardUserName}>{rName}</Text>
-                </Column>
-              </Row>
+              <Link
+                href={createChatLink({
+                  utmContent: `${EMAIL_TYPES.SR}-character_profile`,
+                  emailType: EMAIL_TYPES.SR,
+                  character_id: rid,
+                  userId,
+                })}
+              >
+                <Row style={{ height: "48px" }}>
+                  <Column style={cardAvatarWrapper}>
+                    <Img style={cardAvatar} src={rAvatar} alt="r avatar" />
+                  </Column>
+                  <Column style={{ height: "48px", margin: "0px" }}>
+                    <Text style={cardUserName}>{rName}</Text>
+                  </Column>
+                </Row>
+              </Link>
               <Text style={cardText}>
                 You don&apos;t want to miss this one.
               </Text>
-              <EmailButton href={`${routes.chat}?rid=${rid}`}>
+              <EmailButton
+                href={createChatLink({
+                  utmContent: `${EMAIL_TYPES.SR}-view_photo_button`,
+                  emailType: EMAIL_TYPES.SR,
+                  character_id: rid,
+                  userId,
+                })}
+              >
                 View Photo Now
               </EmailButton>
             </Column>
@@ -133,7 +163,11 @@ export const RecallHotSelfie = ({
         </Section>
       </Section>
 
-      <EmailFooter userId={userId} />
+      <EmailFooter
+        emailType={EMAIL_TYPES.SR}
+        userId={userId}
+        characterId={rid}
+      />
     </EmailContainer>
   );
 };

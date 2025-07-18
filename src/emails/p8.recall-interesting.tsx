@@ -5,7 +5,8 @@ import EmailContainer from "@/components/email/components/EmailContainer";
 import EmailButton from "@/components/email/components/EmailButton";
 import EmailTrackingPixel from "@/components/email/components/EmailTrackingPixel";
 // import EmailReminder from "@/components/email/components/EmailReminder";
-import { routes, staticAssetsPrefix } from "@/lib/config";
+import { staticAssetsPrefix } from "@/lib/config";
+import { createChatLink, EMAIL_TYPES } from "@/lib/email-utm";
 
 const title = {
   color: "#F8FAFC",
@@ -67,13 +68,22 @@ export const RecallInteresting = ({
         trackingUrl ? <EmailTrackingPixel src={trackingUrl} /> : undefined
       }
     >
-      <EmailHeader />
+      <EmailHeader
+        emailType={EMAIL_TYPES.FIN}
+        character_id={rid}
+        userId={userId}
+      />
       <Section>
         <Text style={title}>
           I can&apos;t stop thinking...
           {/* <strong style={titleStrong}>you&apos;ll love it💗</strong> */}
         </Text>
-        <Link href={`${routes.chat}?rid=${rid}`}>
+        <Link href={createChatLink({
+          utmContent: `${EMAIL_TYPES.FIN}-character_message_bubble`,
+          emailType: EMAIL_TYPES.FIN,
+          character_id: rid,
+          userId,
+        })}>
           <Section style={tipWrapper}>
             <Text style={tip}>
               ...about whether you liked my photo. Let me know? 🥺
@@ -81,12 +91,23 @@ export const RecallInteresting = ({
           </Section>
         </Link>
         <Section style={buttonWrapper}>
-          <EmailButton href={`${routes.chat}?rid=${rid}`}>
+          <EmailButton
+            href={createChatLink({
+              utmContent: `${EMAIL_TYPES.FIN}-user_reply_bubble_button`,
+              emailType: EMAIL_TYPES.FIN,
+              character_id: rid,
+              userId,
+            })}
+          >
             Reply to her photo
           </EmailButton>
         </Section>
       </Section>
-      <EmailFooter userId={userId} />
+      <EmailFooter
+        emailType={EMAIL_TYPES.FIN}
+        userId={userId}
+        characterId={rid}
+      />
     </EmailContainer>
   );
 };

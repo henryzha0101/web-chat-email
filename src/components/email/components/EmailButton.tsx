@@ -41,18 +41,20 @@ export const EmailButton = ({
   children,
   style,
   type = "primary",
-}: EmailButtonProps) => (
-  <Section
-    style={{
-      ...buttonWrapper,
-      ...(type === "outline" ? outlineButtonWrapper : {}),
-      ...style,
-    }}
-  >
-    <Button href={href} style={{ ...defaultButtonStyle }}>
-      {children}
-    </Button>
-  </Section>
-);
+}: EmailButtonProps) => {
+  return (
+    <Section
+      style={{
+        ...buttonWrapper,
+        ...(type === "outline" ? outlineButtonWrapper : {}),
+        ...style,
+      }}
+    >
+      <Button href={href} style={{ ...defaultButtonStyle }}>
+        {children}
+      </Button>
+    </Section>
+  );
+};
 
 export default EmailButton;

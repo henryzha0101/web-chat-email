@@ -7,7 +7,7 @@ import EmailContainer from "@/components/email/components/EmailContainer";
 import EmailButton from "@/components/email/components/EmailButton";
 // import EmailReminder from "@/components/email/components/EmailReminder";
 import EmailTrackingPixel from "@/components/email/components/EmailTrackingPixel";
-import { routes } from "@/lib/config";
+import { createVerifyEmailLink, EMAIL_TYPES } from "@/lib/email-utm";
 
 const confirmText = {
   color: "#F8FAFC",
@@ -57,7 +57,11 @@ export const VerifyEmail = ({ rid, userId, trackingUrl }: VerifyEmailProps) => {
         trackingUrl ? <EmailTrackingPixel src={trackingUrl} /> : undefined
       }
     >
-      <EmailHeader />
+      <EmailHeader
+        emailType={EMAIL_TYPES.VERIFY}
+        character_id={rid}
+        userId={userId}
+      />
       <Section>
         <Text style={confirmText}>Activate Your Account</Text>
         <Text style={neuronsText}>and claim your welcome bonus! </Text>
@@ -65,13 +69,19 @@ export const VerifyEmail = ({ rid, userId, trackingUrl }: VerifyEmailProps) => {
           Click the button to confirm your email, secure your account, and start
           chatting with your free 10 neurons.
         </Text>
-        <EmailButton href={`${routes.emailConfirmation}?rid=${rid}`}>
+        <EmailButton
+          href={createVerifyEmailLink(rid, userId)}
+        >
           Activate &amp; Claim Bonus
         </EmailButton>
         {/* <EmailReminder /> */}
       </Section>
 
-      <EmailFooter userId={userId} />
+      <EmailFooter
+        emailType={EMAIL_TYPES.VERIFY}
+        userId={userId}
+        characterId={rid}
+      />
     </EmailContainer>
   );
 };

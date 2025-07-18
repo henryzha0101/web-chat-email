@@ -12,7 +12,8 @@ import EmailFooter from "@/components/email/components/EmailFooter";
 import EmailContainer from "@/components/email/components/EmailContainer";
 import EmailButton from "@/components/email/components/EmailButton";
 import EmailTrackingPixel from "@/components/email/components/EmailTrackingPixel";
-import { routes, staticAssetsPrefix } from "@/lib/config";
+import { staticAssetsPrefix } from "@/lib/config";
+import { createChatLink, EMAIL_TYPES } from "@/lib/email-utm";
 
 const heading = {
   color: "#F8FAFC",
@@ -120,7 +121,11 @@ export const WelcomeTo = ({ rid, userId, trackingUrl }: WelcomeToProps) => {
         trackingUrl ? <EmailTrackingPixel src={trackingUrl} /> : undefined
       }
     >
-      <EmailHeader />
+      <EmailHeader
+        emailType={EMAIL_TYPES.WELCOME_TO}
+        character_id={rid}
+        userId={userId}
+      />
       <Section>
         <Heading style={heading}>So glad you&apos;re here 💗</Heading>
         <Row>
@@ -130,13 +135,25 @@ export const WelcomeTo = ({ rid, userId, trackingUrl }: WelcomeToProps) => {
               even leave you voice notes. Don&apos;t be shy!
             </Text>
             <span>
-              <EmailButton href={`${routes.chat}?rid=${rid}`}>
+              <EmailButton
+                href={createChatLink({
+                  utmContent: `${EMAIL_TYPES.WELCOME_TO}-welcome_chat_button`,
+                  emailType: EMAIL_TYPES.WELCOME_TO,
+                  character_id: rid,
+                  userId,
+                })}
+              >
                 Let&apos;s Chat
               </EmailButton>
             </span>
           </Column>
           <Column style={columnImg}>
-            <Link href={`${routes.chat}?rid=${rid}`}>
+            <Link href={createChatLink({
+              utmContent: `${EMAIL_TYPES.WELCOME_TO}-welcome_chat_button`,
+              emailType: EMAIL_TYPES.WELCOME_TO,
+              character_id: rid,
+              userId,
+            })}>
               <Img
                 src={`${staticAssetsPrefix}/static/hot_selfie_rotate.png`}
                 alt="GF"
@@ -146,16 +163,19 @@ export const WelcomeTo = ({ rid, userId, trackingUrl }: WelcomeToProps) => {
             </Link>
           </Column>
         </Row>
-        <Link href={`${routes.chat}?rid=${rid}`}>
+        <Link href={createChatLink({
+          utmContent: `${EMAIL_TYPES.WELCOME_TO}-welcome_chat_button`,
+          emailType: EMAIL_TYPES.WELCOME_TO,
+          character_id: rid,
+          userId,
+        })}>
           <Section style={section}>
             <Row>
               <Column style={cardIconWrapper}>
                 <Text style={cardIcon}>🔞</Text>
               </Column>
               <Column>
-                <Text style={cardTitle}>
-                  Say Anything, Anytime
-                </Text>
+                <Text style={cardTitle}>Say Anything, Anytime</Text>
               </Column>
             </Row>
             <Text style={cardText}>
@@ -164,7 +184,12 @@ export const WelcomeTo = ({ rid, userId, trackingUrl }: WelcomeToProps) => {
             </Text>
           </Section>
         </Link>
-        <Link href={`${routes.chat}?rid=${rid}`}>
+        <Link href={createChatLink({
+          utmContent: `${EMAIL_TYPES.WELCOME_TO}-welcome_chat_button`,
+          emailType: EMAIL_TYPES.WELCOME_TO,
+          character_id: rid,
+          userId,
+        })}>
           <Section style={section}>
             <Row>
               <Column style={cardIconWrapper}>
@@ -180,7 +205,12 @@ export const WelcomeTo = ({ rid, userId, trackingUrl }: WelcomeToProps) => {
             </Text>
             <EmailButton
               type="outline"
-              href={`${routes.chat}?rid=${rid}`}
+              href={createChatLink({
+                utmContent: `${EMAIL_TYPES.WELCOME_TO}-welcome_chat_button`,
+                emailType: EMAIL_TYPES.WELCOME_TO,
+                character_id: rid,
+                userId,
+              })}
               style={button}
             >
               Start Our Conversation
@@ -189,7 +219,11 @@ export const WelcomeTo = ({ rid, userId, trackingUrl }: WelcomeToProps) => {
         </Link>
       </Section>
 
-      <EmailFooter userId={userId} />
+      <EmailFooter
+        emailType={EMAIL_TYPES.WELCOME_TO}
+        userId={userId}
+        characterId={rid}
+      />
     </EmailContainer>
   );
 };

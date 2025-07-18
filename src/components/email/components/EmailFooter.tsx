@@ -15,6 +15,16 @@ import {
   staticAssetsPrefix,
   websiteName,
 } from "@/lib/config";
+import {
+  addEmailUtmParams,
+  createPrivacyLink,
+  createRefundLink,
+  createSafetyLink,
+  createSupportLink,
+  createUnsubscribeLink,
+  createTermsLink,
+  EmailType,
+} from "@/lib/email-utm";
 
 const my20 = {
   margin: "20px 0 20px 0",
@@ -37,7 +47,9 @@ const link = {
 const _baseUrl = staticAssetsPrefix;
 
 interface EmailFooterProps {
-  userId?: string;
+  emailType: EmailType;
+  userId: string;
+  characterId: string;
   baseUrl?: string;
   showLegalLinks?: boolean;
   showHr?: boolean;
@@ -45,7 +57,9 @@ interface EmailFooterProps {
 }
 
 export const EmailFooter = ({
-  userId = "",
+  emailType,
+  userId,
+  characterId,
   baseUrl = _baseUrl,
   showLegalLinks = false,
   showHr = false,
@@ -57,22 +71,42 @@ export const EmailFooter = ({
     {showLegalLinks && (
       <Row style={my20}>
         <Column>
-          <Link style={link} href={routes.privacy}>
+          <Link style={link} href={createPrivacyLink({
+            utmContent: `${emailType}-footer_privacy`,
+            emailType,
+            character_id: characterId,
+            userId,
+          })}>
             Privacy Policy
           </Link>
         </Column>
         <Column>
-          <Link style={link} href={routes.refund}>
+          <Link style={link} href={createRefundLink({
+            utmContent: `${emailType}-footer_refund`,
+            emailType,
+            character_id: characterId,
+            userId,
+          })}>
             Refund Policy
           </Link>
         </Column>
         <Column>
-          <Link style={link} href={routes.safety}>
+          <Link style={link} href={createSafetyLink({
+            utmContent: `${emailType}-footer_safety`,
+            emailType,
+            character_id: characterId,
+            userId,
+          })}>
             Safety Guidelines
           </Link>
         </Column>
         <Column>
-          <Link style={link} href={routes.support}>
+          <Link style={link} href={createSupportLink({
+            utmContent: `${emailType}-footer_support`,
+            emailType,
+            character_id: characterId,
+            userId,
+          })}>
             Support
           </Link>
         </Column>
@@ -80,18 +114,36 @@ export const EmailFooter = ({
     )}
     <Text style={infoText}>
       Please add{" "}
-      <Link href={routes.supportEmail} style={link}>
+      <Link
+        href={addEmailUtmParams(routes.supportEmail, {
+          utm_content: `${emailType}-footer_support_email`,
+          source: `email_recall_${emailType}`,
+          uid: userId,
+          character_id: characterId,
+        })}
+        style={link}
+      >
         {supportEmail}
       </Link>{" "}
       to your contact list. You can{" "}
-      <Link href={routes.unsubscribe} style={link}>
+      <Link href={createUnsubscribeLink({
+        utmContent: `${emailType}-footer_unsubscribe`,
+        emailType,
+        character_id: characterId,
+        userId,
+      })} style={link}>
         unsubscribe
       </Link>{" "}
       from this mailing at any time.
     </Text>
     <Text style={infoText}>
       All payments are executed in accordance with {websiteName}{" "}
-      <Link href={routes.terms} style={link}>
+      <Link href={createTermsLink({
+        utmContent: `${emailType}-footer_terms`,
+        emailType,
+        character_id: characterId,
+        userId,
+      })} style={link}>
         Terms & Conditions
       </Link>
       .
@@ -100,7 +152,14 @@ export const EmailFooter = ({
     <Row style={my20}>
       <Column>
         <Section>
-          <Link href={socialMedia.twitter}>
+          <Link
+            href={addEmailUtmParams(socialMedia.twitter, {
+              utm_content: `${emailType}-footer_social_twitter`,
+              source: `email_recall_${emailType}`,
+              uid: userId,
+              character_id: characterId,
+            })}
+          >
             <Img
               src={`${baseUrl}/static/logo_x.png`}
               width="28"

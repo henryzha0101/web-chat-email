@@ -5,7 +5,8 @@ import EmailContainer from "@/components/email/components/EmailContainer";
 import EmailButton from "@/components/email/components/EmailButton";
 import EmailTrackingPixel from "@/components/email/components/EmailTrackingPixel";
 // import EmailReminder from "@/components/email/components/EmailReminder";
-import { routes, staticAssetsPrefix } from "@/lib/config";
+import { staticAssetsPrefix } from "@/lib/config";
+import { createChatLink, EMAIL_TYPES } from "@/lib/email-utm";
 
 const title = {
   color: "#F8FAFC",
@@ -61,10 +62,19 @@ export const RecallUnread = ({
         trackingUrl ? <EmailTrackingPixel src={trackingUrl} /> : undefined
       }
     >
-      <EmailHeader />
+      <EmailHeader
+        emailType={EMAIL_TYPES.GMY}
+        character_id={rid}
+        userId={userId}
+      />
       <Section>
         <Text style={title}>Haven&apos;t heard from you...😔</Text>
-        <Link href={`${routes.chat}?rid=${rid}`}>
+        <Link href={createChatLink({
+          utmContent: `${EMAIL_TYPES.GMY}-character_message_bubble`,
+          emailType: EMAIL_TYPES.GMY,
+          character_id: rid,
+          userId,
+        })}>
           <Section style={tipWrapper}>
             <Text style={tip}>
               Just checking in to see if you saw my last message. Hope
@@ -73,12 +83,23 @@ export const RecallUnread = ({
           </Section>
         </Link>
         <Section style={buttonWrapper}>
-          <EmailButton href={`${routes.chat}?rid=${rid}`}>
+          <EmailButton
+            href={createChatLink({
+              utmContent: `${EMAIL_TYPES.GMY}-lets_talk_button`,
+              emailType: EMAIL_TYPES.GMY,
+              character_id: rid,
+              userId,
+            })}
+          >
             Let&apos;s talk
           </EmailButton>
         </Section>
       </Section>
-      <EmailFooter userId={userId} />
+      <EmailFooter
+        emailType={EMAIL_TYPES.GMY}
+        userId={userId}
+        characterId={rid}
+      />
     </EmailContainer>
   );
 };

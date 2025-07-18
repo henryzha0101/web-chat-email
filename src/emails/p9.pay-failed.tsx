@@ -5,7 +5,8 @@ import EmailContainer from "@/components/email/components/EmailContainer";
 import EmailButton from "@/components/email/components/EmailButton";
 import EmailTrackingPixel from "@/components/email/components/EmailTrackingPixel";
 // import EmailReminder from "@/components/email/components/EmailReminder";
-import { routes, staticAssetsPrefix } from "@/lib/config";
+import { staticAssetsPrefix } from "@/lib/config";
+import { createEmailRoute, EMAIL_TYPES } from "@/lib/email-utm";
 
 const title = {
   color: "#F8FAFC",
@@ -81,7 +82,11 @@ export const PayFailed = ({ rid, userId, trackingUrl }: PayFailedProps) => {
         trackingUrl ? <EmailTrackingPixel src={trackingUrl} /> : undefined
       }
     >
-      <EmailHeader />
+      <EmailHeader
+        emailType={EMAIL_TYPES.PAY_FAILED}
+        character_id={rid}
+        userId={userId}
+      />
       <Section>
         <Text style={title}>
           Your Payment Was <br />{" "}
@@ -115,11 +120,22 @@ export const PayFailed = ({ rid, userId, trackingUrl }: PayFailedProps) => {
             </Column>
           </Row>
         </Section>
-        <EmailButton href={`${routes.support}`}>
+        <EmailButton
+          href={createEmailRoute("support", {
+            utm_content: "payment_failed_support",
+            source: "email_payment_failed",
+            uid: userId,
+            character_id: userId,
+          })}
+        >
           Update Payment Info
         </EmailButton>
       </Section>
-      <EmailFooter userId={userId} />
+      <EmailFooter
+        emailType={EMAIL_TYPES.PAY_FAILED}
+        userId={userId}
+        characterId={rid}
+      />
     </EmailContainer>
   );
 };

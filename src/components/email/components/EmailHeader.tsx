@@ -1,7 +1,8 @@
 import React from "react";
-import { Section, Img } from "@react-email/components";
+import { Section, Img, Link } from "@react-email/components";
 import { header } from "@/emails/_styles/common";
 import { websiteLogo } from "@/lib/config";
+import { createHomeLink, EmailType } from "@/lib/email-utm";
 
 interface EmailHeaderProps {
   logoSrc?: string;
@@ -11,6 +12,9 @@ interface EmailHeaderProps {
   center?: boolean;
   children?: React.ReactNode;
   style?: React.CSSProperties;
+  emailType: EmailType;
+  character_id: string;
+  userId: string;
 }
 
 const DEFAULT_LOGO = websiteLogo;
@@ -24,18 +28,28 @@ export const EmailHeader = ({
   center = false,
   children,
   style = header,
+  emailType,
+  character_id,
+  userId,
 }: EmailHeaderProps) => (
   <Section style={style}>
-    <Img
-      src={logoSrc}
-      width={logoWidth}
-      height={logoHeight}
-      style={{
-        margin: center ? "0 auto" : "0",
-        objectFit: "cover",
-      }}
-      alt={logoAlt}
-    />
+    <Link href={createHomeLink({
+      utmContent: `${emailType}-header_logo`,
+      emailType,
+      character_id,
+      userId,
+    })}>
+      <Img
+        src={logoSrc}
+        width={logoWidth}
+        height={logoHeight}
+        style={{
+          margin: center ? "0 auto" : "0",
+          objectFit: "cover",
+        }}
+        alt={logoAlt}
+      />
+    </Link>
     {children}
   </Section>
 );
