@@ -69,12 +69,14 @@ export const RecallUnread = ({
       />
       <Section>
         <Text style={title}>Haven&apos;t heard from you...😔</Text>
-        <Link href={createChatLink({
-          utmContent: `${EMAIL_TYPES.GMY}-character_message_bubble`,
-          emailType: EMAIL_TYPES.GMY,
-          character_id: rid,
-          userId,
-        })}>
+        <Link
+          href={createChatLink({
+            utmContent: `${EMAIL_TYPES.GMY}-character_message_bubble`,
+            emailType: EMAIL_TYPES.GMY,
+            character_id: rid,
+            userId,
+          })}
+        >
           <Section style={tipWrapper}>
             <Text style={tip}>
               Just checking in to see if you saw my last message. Hope
@@ -111,9 +113,18 @@ const beRender = {
 };
 
 export const bePlaceHolder = {
+  /** 角色ID */
   rid: "{{rid}}",
+  /** 用户ID */
   userId: "{{userId}}",
+  /** 跟踪像素URL */
   trackingUrl: "{{trackingUrl}}",
+};
+
+export const bePlaceHolderComments = {
+  rid: "角色ID",
+  userId: "用户ID",
+  trackingUrl: "跟踪像素URL",
 };
 
 export default function RecallUnreadPage({

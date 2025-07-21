@@ -147,9 +147,18 @@ const beRender = {
 };
 
 export const bePlaceHolder = {
+  /** 角色ID */
   rid: "{{rid}}",
+  /** 用户ID */
   userId: "{{userId}}",
+  /** 跟踪像素URL */
   trackingUrl: "{{trackingUrl}}",
+};
+
+export const bePlaceHolderComments = {
+  rid: "角色ID",
+  userId: "用户ID",
+  trackingUrl: "跟踪像素URL",
 };
 
 export default function PayFailedPage({ data }: { data: PayFailedProps }) {

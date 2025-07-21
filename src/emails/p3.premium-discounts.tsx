@@ -133,12 +133,15 @@ export const PremiumDiscounts = ({
         <Text style={subtitle}>A Special Offer</Text>
         <Text style={tip}>Loving {websiteName}?</Text>
         <EmailReminder style={reminder} />
-        <Link href={createChatLink({
-          utmContent: `${EMAIL_TYPES.PREMIUM_DISCOUNTS}-discount_70_button`,
-          emailType: EMAIL_TYPES.PREMIUM_DISCOUNTS,
-          character_id: rid,
-          userId,
-        })} style={link}>
+        <Link
+          href={createChatLink({
+            utmContent: `${EMAIL_TYPES.PREMIUM_DISCOUNTS}-discount_70_button`,
+            emailType: EMAIL_TYPES.PREMIUM_DISCOUNTS,
+            character_id: rid,
+            userId,
+          })}
+          style={link}
+        >
           <Section style={linkSection}>
             <Text style={linkTitle}>Unlock the Ultimate Experience!</Text>
             <Row style={{ margin: "24px 0 0" }}>
@@ -214,9 +217,18 @@ const beRender = {
 };
 
 export const bePlaceHolder = {
+  /** 角色ID */
   rid: "{{rid}}",
+  /** 用户ID */
   userId: "{{userId}}",
+  /** 跟踪像素URL */
   trackingUrl: "{{trackingUrl}}",
+};
+
+export const bePlaceHolderComments = {
+  rid: "角色ID",
+  userId: "用户ID",
+  trackingUrl: "跟踪像素URL",
 };
 
 export default function PremiumDiscountsPage({

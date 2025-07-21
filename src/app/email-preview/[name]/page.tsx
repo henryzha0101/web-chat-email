@@ -4,7 +4,6 @@ import { emailTemplates } from "@/emails";
 
 // 移除，因为 Email 使用了 MessageChannel（Nodejs API）
 // export const runtime = "edge"; // 使用Edge Runtime，适用于 Cloudflare Pages
-// 
 export default async function EmailPreview({
   params,
 }: {
@@ -20,6 +19,7 @@ export default async function EmailPreview({
       default: EmailComponent,
       bePlaceHolder,
       beRender,
+      bePlaceHolderComments,
     } = await import(`@/emails/${slug}`);
 
     // 在服务端预渲染两种状态的HTML和组件
@@ -79,6 +79,8 @@ export default async function EmailPreview({
             mockDataPreview={mockDataPreview}
             placeholderPreview={placeholderPreview}
             slug={slug}
+            bePlaceHolder={bePlaceHolder}
+            bePlaceHolderComments={bePlaceHolderComments || {}}
           />
         </main>
       </div>

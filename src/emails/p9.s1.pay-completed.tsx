@@ -167,14 +167,33 @@ const beRender = {
 };
 
 export const bePlaceHolder = {
+  /** 角色ID */
   rid: "{{rid}}",
+  /** 用户ID */
   userId: "{{userId}}",
+  /** 购买时长 */
   purchaseDuration: "{{purchaseDuration}}",
+  /** 支付方式 */
   paymentMethod: "{{paymentMethod}}",
+  /** 交易日期 */
   transactionDate: "{{transactionDate}}",
+  /** 购买费用 */
   purchaseCost: "{{purchaseCost}}",
+  /** 税费金额 */
   vatAmount: "{{vatAmount}}",
+  /** 跟踪像素URL */
   trackingUrl: "{{trackingUrl}}",
+};
+
+export const bePlaceHolderComments = {
+  rid: "角色ID",
+  userId: "用户ID",
+  purchaseDuration: "购买时长",
+  paymentMethod: "支付方式",
+  transactionDate: "交易日期",
+  purchaseCost: "购买费用",
+  vatAmount: "税费金额",
+  trackingUrl: "跟踪像素URL",
 };
 
 export default function PayCompletedPage({

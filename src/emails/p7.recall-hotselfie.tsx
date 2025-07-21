@@ -183,12 +183,27 @@ const beRender = {
 };
 
 export const bePlaceHolder = {
+  /** 角色ID */
   rid: "{{rid}}",
+  /** 角色名称 */
   rName: "{{rName}}",
+  /** 角色头像 */
   rAvatar: "{{rAvatar}}",
+  /** 用户ID */
   userId: "{{userId}}",
+  /** 用户名称 */
   userName: "{{userName}}",
+  /** 跟踪像素URL */
   trackingUrl: "{{trackingUrl}}",
+};
+
+export const bePlaceHolderComments = {
+  rid: "角色ID",
+  rName: "角色名称",
+  rAvatar: "角色头像",
+  userId: "用户ID",
+  userName: "用户名称",
+  trackingUrl: "跟踪像素URL",
 };
 
 export default function RecallHotSelfiePage({

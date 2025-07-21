@@ -148,12 +148,14 @@ export const WelcomeTo = ({ rid, userId, trackingUrl }: WelcomeToProps) => {
             </span>
           </Column>
           <Column style={columnImg}>
-            <Link href={createChatLink({
-              utmContent: `${EMAIL_TYPES.WELCOME_TO}-welcome_chat_button`,
-              emailType: EMAIL_TYPES.WELCOME_TO,
-              character_id: rid,
-              userId,
-            })}>
+            <Link
+              href={createChatLink({
+                utmContent: `${EMAIL_TYPES.WELCOME_TO}-welcome_chat_button`,
+                emailType: EMAIL_TYPES.WELCOME_TO,
+                character_id: rid,
+                userId,
+              })}
+            >
               <Img
                 src={`${staticAssetsPrefix}/static/hot_selfie_rotate.png`}
                 alt="GF"
@@ -163,12 +165,14 @@ export const WelcomeTo = ({ rid, userId, trackingUrl }: WelcomeToProps) => {
             </Link>
           </Column>
         </Row>
-        <Link href={createChatLink({
-          utmContent: `${EMAIL_TYPES.WELCOME_TO}-welcome_chat_button`,
-          emailType: EMAIL_TYPES.WELCOME_TO,
-          character_id: rid,
-          userId,
-        })}>
+        <Link
+          href={createChatLink({
+            utmContent: `${EMAIL_TYPES.WELCOME_TO}-welcome_chat_button`,
+            emailType: EMAIL_TYPES.WELCOME_TO,
+            character_id: rid,
+            userId,
+          })}
+        >
           <Section style={section}>
             <Row>
               <Column style={cardIconWrapper}>
@@ -184,12 +188,14 @@ export const WelcomeTo = ({ rid, userId, trackingUrl }: WelcomeToProps) => {
             </Text>
           </Section>
         </Link>
-        <Link href={createChatLink({
-          utmContent: `${EMAIL_TYPES.WELCOME_TO}-welcome_chat_button`,
-          emailType: EMAIL_TYPES.WELCOME_TO,
-          character_id: rid,
-          userId,
-        })}>
+        <Link
+          href={createChatLink({
+            utmContent: `${EMAIL_TYPES.WELCOME_TO}-welcome_chat_button`,
+            emailType: EMAIL_TYPES.WELCOME_TO,
+            character_id: rid,
+            userId,
+          })}
+        >
           <Section style={section}>
             <Row>
               <Column style={cardIconWrapper}>
@@ -237,10 +243,21 @@ const beRender = {
 };
 
 export const bePlaceHolder = {
+  /** 角色ID */
   rid: "{{rid}}",
+  /** 用户ID */
   userId: "{{userId}}",
-  userCardImg: "{{userCardImg}}",
+  /** 用户卡片图片 */
+  // userCardImg: "{{userCardImg}}",
+  /** 跟踪像素URL */
   trackingUrl: "{{trackingUrl}}",
+};
+
+export const bePlaceHolderComments = {
+  rid: "角色ID",
+  userId: "用户ID",
+  // userCardImg: "用户卡片图片",
+  trackingUrl: "跟踪像素URL",
 };
 
 export default function WelcomeToPage({ data }: { data: WelcomeToProps }) {

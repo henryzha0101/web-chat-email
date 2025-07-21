@@ -69,9 +69,7 @@ export const VerifyEmail = ({ rid, userId, trackingUrl }: VerifyEmailProps) => {
           Click the button to confirm your email, secure your account, and start
           chatting with your free 10 neurons.
         </Text>
-        <EmailButton
-          href={createVerifyEmailLink(rid, userId)}
-        >
+        <EmailButton href={createVerifyEmailLink(rid, userId)}>
           Activate &amp; Claim Bonus
         </EmailButton>
         {/* <EmailReminder /> */}
@@ -93,9 +91,18 @@ const beRender = {
 };
 
 export const bePlaceHolder = {
+  /** 角色ID */
   rid: "{{rid}}",
+  /** 用户ID */
   userId: "{{userId}}",
+  /** 跟踪像素URL */
   trackingUrl: "{{trackingUrl}}",
+};
+
+export const bePlaceHolderComments = {
+  rid: "角色ID",
+  userId: "用户ID",
+  trackingUrl: "跟踪像素URL",
 };
 
 export default function VerifyEmailPage({ data }: { data: VerifyEmailProps }) {
