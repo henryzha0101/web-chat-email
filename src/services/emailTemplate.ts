@@ -51,7 +51,6 @@ export class EmailTemplateService {
     url.searchParams.set("pageSize", pageSize.toString());
 
     const response = await fetch(url.toString());
-
     if (!response.ok) {
       throw new Error(`获取模板列表失败: HTTP ${response.status}`);
     }
