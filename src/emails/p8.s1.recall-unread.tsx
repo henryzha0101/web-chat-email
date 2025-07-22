@@ -45,12 +45,14 @@ const buttonWrapper = {
 
 interface RecallUnreadProps {
   rid: string;
+  rSecret: string;
   userId: string;
   trackingUrl?: string;
 }
 
 export const RecallUnread = ({
   rid,
+  rSecret,
   userId,
   trackingUrl,
 }: RecallUnreadProps) => {
@@ -74,6 +76,7 @@ export const RecallUnread = ({
             utmContent: `${EMAIL_TYPES.GMY}-character_message_bubble`,
             emailType: EMAIL_TYPES.GMY,
             character_id: rid,
+            rSecret,
             userId,
           })}
         >
@@ -90,6 +93,7 @@ export const RecallUnread = ({
               utmContent: `${EMAIL_TYPES.GMY}-lets_talk_button`,
               emailType: EMAIL_TYPES.GMY,
               character_id: rid,
+              rSecret,
               userId,
             })}
           >
@@ -108,6 +112,7 @@ export const RecallUnread = ({
 
 const beRender = {
   rid: "test-rid",
+  rSecret: "test-rSecret",
   userId: "61912225442",
   trackingUrl: "https://example.com/track?id=test-tracking-id",
 };
@@ -115,6 +120,8 @@ const beRender = {
 export const bePlaceHolder = {
   /** 角色ID */
   rid: "{{rid}}",
+  /** 角色密钥 */
+  rSecret: "{{rSecret}}",
   /** 用户ID */
   userId: "{{userId}}",
   /** 跟踪像素URL */
@@ -123,9 +130,12 @@ export const bePlaceHolder = {
 
 export const bePlaceHolderComments = {
   rid: "角色ID",
+  rSecret: "角色密钥",
   userId: "用户ID",
   trackingUrl: "跟踪像素URL",
 };
+
+export const beTemplateTheme = "1 unread message...";
 
 export default function RecallUnreadPage({
   data,

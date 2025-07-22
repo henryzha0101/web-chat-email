@@ -106,12 +106,14 @@ const linkImgColumn = {
 
 interface PremiumDiscountsProps {
   rid: string;
+  rSecret: string;
   userId: string;
   trackingUrl?: string;
 }
 
 export const PremiumDiscounts = ({
   rid,
+  rSecret,
   userId,
   trackingUrl,
 }: PremiumDiscountsProps) => {
@@ -138,6 +140,7 @@ export const PremiumDiscounts = ({
             utmContent: `${EMAIL_TYPES.PREMIUM_DISCOUNTS}-discount_70_button`,
             emailType: EMAIL_TYPES.PREMIUM_DISCOUNTS,
             character_id: rid,
+            rSecret,
             userId,
           })}
           style={link}
@@ -194,6 +197,7 @@ export const PremiumDiscounts = ({
             utmContent: `${EMAIL_TYPES.PREMIUM_DISCOUNTS}-discount_70_button`,
             emailType: EMAIL_TYPES.PREMIUM_DISCOUNTS,
             character_id: rid,
+            rSecret,
             userId,
           })}
         >
@@ -212,6 +216,7 @@ export const PremiumDiscounts = ({
 
 const beRender = {
   rid: "test-rid",
+  rSecret: "test-rSecret",
   userId: "61912225442",
   trackingUrl: "https://example.com/track?id=test-tracking-id",
 };
@@ -219,6 +224,8 @@ const beRender = {
 export const bePlaceHolder = {
   /** 角色ID */
   rid: "{{rid}}",
+  /** 角色密钥 */
+  rSecret: "{{rSecret}}",
   /** 用户ID */
   userId: "{{userId}}",
   /** 跟踪像素URL */
@@ -227,9 +234,12 @@ export const bePlaceHolder = {
 
 export const bePlaceHolderComments = {
   rid: "角色ID",
+  rSecret: "角色密钥",
   userId: "用户ID",
   trackingUrl: "跟踪像素URL",
 };
+
+export const beTemplateTheme = "premium-discounts";
 
 export default function PremiumDiscountsPage({
   data,

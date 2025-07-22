@@ -139,19 +139,25 @@ export function createHomeLink({
 
 /**
  * 聊天页面链接
+ * 特殊处理：/chats/character_secret 格式
  */
 export function createChatLink({
   utmContent,
   emailType,
   character_id,
+  rSecret,
   userId,
 }: {
   utmContent: string;
   emailType: EmailType;
   character_id: string;
+  rSecret: string;
   userId: string;
 }): string {
-  return createEmailRoute("chat", {
+  // 构造特殊的聊天路径：/chats/character_secret
+  const chatUrl = `${routes.chat}/${rSecret}`;
+
+  return addEmailUtmParams(chatUrl, {
     utm_content: utmContent,
     source: `email_recall_${emailType}`,
     uid: userId,

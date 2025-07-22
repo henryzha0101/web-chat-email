@@ -19,12 +19,14 @@ export interface TemplateListResponse {
 export interface CreateTemplateRequest {
   name: string;
   content: string;
+  theme: string;
 }
 
 export interface UpdateTemplateRequest {
   id: number;
   name: string;
   content: string;
+  theme: string;
 }
 
 export interface ApiResponse<T = unknown> {
@@ -128,7 +130,8 @@ export class EmailTemplateService {
    */
   static async syncTemplate(
     templateName: string,
-    templateContent: string
+    templateContent: string,
+    templateTheme: string
   ): Promise<{ action: "create" | "update"; data: TemplateItem }> {
     try {
       // 1. 检查模板是否已存在
@@ -151,6 +154,7 @@ export class EmailTemplateService {
           id: existingTemplate.id,
           name: templateName,
           content: templateContent,
+          theme: templateTheme,
         });
 
         return {
@@ -162,6 +166,7 @@ export class EmailTemplateService {
         const result = await this.createTemplate({
           name: templateName,
           content: templateContent,
+          theme: templateTheme,
         });
 
         return {

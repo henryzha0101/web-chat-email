@@ -73,6 +73,7 @@ const cardUserWrapper = {
 
 interface RecallHotSelfieProps {
   rid: string;
+  rSecret: string;
   rName: string;
   rAvatar: string;
   userId: string;
@@ -82,6 +83,7 @@ interface RecallHotSelfieProps {
 
 export const RecallHotSelfie = ({
   rid,
+  rSecret,
   rName,
   rAvatar,
   userId,
@@ -117,6 +119,7 @@ export const RecallHotSelfie = ({
                   utmContent: `${EMAIL_TYPES.SR}-masked_photo`,
                   emailType: EMAIL_TYPES.SR,
                   character_id: rid,
+                  rSecret,
                   userId,
                 })}
               >
@@ -133,6 +136,7 @@ export const RecallHotSelfie = ({
                   utmContent: `${EMAIL_TYPES.SR}-character_profile`,
                   emailType: EMAIL_TYPES.SR,
                   character_id: rid,
+                  rSecret,
                   userId,
                 })}
               >
@@ -153,6 +157,7 @@ export const RecallHotSelfie = ({
                   utmContent: `${EMAIL_TYPES.SR}-view_photo_button`,
                   emailType: EMAIL_TYPES.SR,
                   character_id: rid,
+                  rSecret,
                   userId,
                 })}
               >
@@ -174,6 +179,7 @@ export const RecallHotSelfie = ({
 
 const beRender = {
   rid: "test-rid",
+  rSecret: "test-rSecret",
   rName: "Sarah Jessie",
   rAvatar:
     "https://pub-1dd2cb98fc55487b8f184cb1b0017c12.r2.dev/character/album/1921137325988651008/picture/avatar.jpeg",
@@ -185,6 +191,8 @@ const beRender = {
 export const bePlaceHolder = {
   /** 角色ID */
   rid: "{{rid}}",
+  /** 角色密钥 */
+  rSecret: "{{rSecret}}",
   /** 角色名称 */
   rName: "{{rName}}",
   /** 角色头像 */
@@ -199,12 +207,16 @@ export const bePlaceHolder = {
 
 export const bePlaceHolderComments = {
   rid: "角色ID",
+  rSecret: "角色密钥",
   rName: "角色名称",
   rAvatar: "角色头像",
   userId: "用户ID",
   userName: "用户名称",
   trackingUrl: "跟踪像素URL",
 };
+
+export const beTemplateTheme =
+  "{{userName}}, {{rName}} sent you a new photo...";
 
 export default function RecallHotSelfiePage({
   data,

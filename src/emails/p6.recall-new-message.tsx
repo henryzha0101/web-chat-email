@@ -57,6 +57,7 @@ const rNameTip = {
 
 interface RecallNewMessageProps {
   rid: string;
+  rSecret: string;
   rName: string;
   rBgImg: string;
   userId: string;
@@ -66,6 +67,7 @@ interface RecallNewMessageProps {
 
 export const RecallNewMessage = ({
   rid,
+  rSecret,
   rName,
   rBgImg,
   userId,
@@ -97,6 +99,7 @@ export const RecallNewMessage = ({
                 utmContent: `${EMAIL_TYPES.NMR}-character_image`,
                 emailType: EMAIL_TYPES.NMR,
                 character_id: rid,
+                rSecret,
                 userId,
               })}
             >
@@ -111,6 +114,7 @@ export const RecallNewMessage = ({
                 utmContent: `${EMAIL_TYPES.NMR}-read_message_button`,
                 emailType: EMAIL_TYPES.NMR,
                 character_id: rid,
+                rSecret,
                 userId,
               })}
             >
@@ -130,6 +134,7 @@ export const RecallNewMessage = ({
 
 const beRender = {
   rid: "test-rid",
+  rSecret: "test-rSecret",
   rName: "Sarah Jessie",
   rBgImg:
     "https://pub-1dd2cb98fc55487b8f184cb1b0017c12.r2.dev/character/album/1921137325988651008/picture/background.png",
@@ -141,6 +146,8 @@ const beRender = {
 export const bePlaceHolder = {
   /** 角色ID */
   rid: "{{rid}}",
+  /** 角色密钥 */
+  rSecret: "{{rSecret}}",
   /** 角色名称 */
   rName: "{{rName}}",
   /** 角色背景图片 */
@@ -155,12 +162,16 @@ export const bePlaceHolder = {
 
 export const bePlaceHolderComments = {
   rid: "角色ID",
+  rSecret: "角色密钥",
   rName: "角色名称",
   rBgImg: "角色背景图片",
   userId: "用户ID",
   userName: "用户名称",
   trackingUrl: "跟踪像素URL",
 };
+
+export const beTemplateTheme =
+  "{{userName}}, you have a new message from {{rName}}";
 
 export default function RecallNewMessagePage({
   data,

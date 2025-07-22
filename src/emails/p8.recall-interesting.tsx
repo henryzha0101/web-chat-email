@@ -51,12 +51,14 @@ const buttonWrapper = {
 
 interface RecallInterestingProps {
   rid: string;
+  rSecret: string;
   userId: string;
   trackingUrl?: string;
 }
 
 export const RecallInteresting = ({
   rid,
+  rSecret,
   userId,
   trackingUrl,
 }: RecallInterestingProps) => {
@@ -83,6 +85,7 @@ export const RecallInteresting = ({
             utmContent: `${EMAIL_TYPES.FIN}-character_message_bubble`,
             emailType: EMAIL_TYPES.FIN,
             character_id: rid,
+            rSecret,
             userId,
           })}
         >
@@ -98,6 +101,7 @@ export const RecallInteresting = ({
               utmContent: `${EMAIL_TYPES.FIN}-user_reply_bubble_button`,
               emailType: EMAIL_TYPES.FIN,
               character_id: rid,
+              rSecret,
               userId,
             })}
           >
@@ -116,6 +120,7 @@ export const RecallInteresting = ({
 
 const beRender = {
   rid: "test-rid",
+  rSecret: "test-rSecret",
   userId: "61912225442",
   trackingUrl: "https://example.com/track?id=test-tracking-id",
 };
@@ -123,6 +128,8 @@ const beRender = {
 export const bePlaceHolder = {
   /** 角色ID */
   rid: "{{rid}}",
+  /** 角色密钥 */
+  rSecret: "{{rSecret}}",
   /** 用户ID */
   userId: "{{userId}}",
   /** 跟踪像素URL */
@@ -131,9 +138,12 @@ export const bePlaceHolder = {
 
 export const bePlaceHolderComments = {
   rid: "角色ID",
+  rSecret: "角色密钥",
   userId: "用户ID",
   trackingUrl: "跟踪像素URL",
 };
+
+export const beTemplateTheme = "Did you see my photo?";
 
 export default function RecallInterestingPage({
   data,

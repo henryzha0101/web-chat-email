@@ -6,6 +6,7 @@ import { EmailTemplateService } from "@/services/emailTemplate";
 interface TemplateSyncButtonProps {
   templateName: string;
   templateContent: string;
+  templateTheme: string;
   className?: string;
   onStatusChange?: (status: SyncStatus) => void;
   initialStatus?: SyncStatus; // 新增：接受外部状态
@@ -22,6 +23,7 @@ export interface SyncStatus {
 export default function TemplateSyncButton({
   templateName,
   templateContent,
+  templateTheme,
   className = "",
   onStatusChange,
   initialStatus,
@@ -114,7 +116,8 @@ export default function TemplateSyncButton({
     try {
       const result = await EmailTemplateService.syncTemplate(
         templateNameWithoutPrefix,
-        templateContent
+        templateContent,
+        templateTheme
       );
 
       const actionText = result.action === "create" ? "创建" : "更新";

@@ -14,7 +14,7 @@ export const socialMedia = {
 export const routes = {
   emailConfirmation: `${websiteUrl}/email-confirmation`,
   home: `${websiteUrl}/`,
-  chat: `${websiteUrl}/chat`,
+  chat: `${websiteUrl}/chats`,
   terms: `${websiteUrl}/terms`,
   privacy: `${websiteUrl}/privacy`,
   refund: `${websiteUrl}/refund`,

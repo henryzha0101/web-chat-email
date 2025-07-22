@@ -20,6 +20,7 @@ export default async function EmailPreview({
       bePlaceHolder,
       beRender,
       bePlaceHolderComments,
+      beTemplateTheme,
     } = await import(`@/emails/${slug}`);
 
     // 在服务端预渲染两种状态的HTML和组件
@@ -81,6 +82,7 @@ export default async function EmailPreview({
             slug={slug}
             bePlaceHolder={bePlaceHolder}
             bePlaceHolderComments={bePlaceHolderComments || {}}
+            beTemplateTheme={beTemplateTheme || ""}
           />
         </main>
       </div>

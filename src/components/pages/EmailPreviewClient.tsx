@@ -16,6 +16,7 @@ interface EmailPreviewClientProps {
   slug: string;
   bePlaceHolder: Record<string, unknown>;
   bePlaceHolderComments: Record<string, string>;
+  beTemplateTheme: string;
 }
 
 export default function EmailPreviewClient({
@@ -26,6 +27,7 @@ export default function EmailPreviewClient({
   slug,
   bePlaceHolder,
   bePlaceHolderComments,
+  beTemplateTheme,
 }: EmailPreviewClientProps) {
   const [usePlaceholder, setUsePlaceholder] = useState(false);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
@@ -141,6 +143,24 @@ export default function EmailPreviewClient({
 
   return (
     <>
+      {/* Preview Section */}
+      <div className="sticky top-0 flex items-center justify-between mb-2 bg-[#070D1B] p-3">
+        <h2 className="text-lg font-semibold text-gray-100">
+          📧 Email Preview ({currentMode})
+        </h2>
+        <button
+          onClick={handleToggle}
+          className={`px-4 py-2 text-sm rounded border transition-colors cursor-pointer ${
+            usePlaceholder
+              ? "bg-blue-100 text-blue-700 border-blue-300"
+              : "bg-gray-100 text-gray-700 border-gray-300 hover:bg-gray-200"
+          }`}
+        >
+          {usePlaceholder ? "🎭 Mock Data" : "🔧 Placeholder"}
+        </button>
+      </div>
+      <div className="border p-4 border-gray-300">{currentPreview}</div>
+
       {/* Template Parameters Section */}
       <div className="sticky top-0 flex items-center justify-between mb-2 bg-[#070D1B] p-3">
         <h2 className="text-lg font-semibold text-gray-100">
@@ -152,7 +172,6 @@ export default function EmailPreviewClient({
           </span>
         </div>
       </div>
-
       <div className="bg-gray-900 rounded-lg p-4 mb-4 border border-gray-700">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {Object.entries(bePlaceHolder).map(([key, value]) => (
@@ -192,25 +211,17 @@ export default function EmailPreviewClient({
           ))}
         </div>
       </div>
-
-      {/* Preview Section */}
+      {/* Template Theme Section */}
       <div className="sticky top-0 flex items-center justify-between mb-2 bg-[#070D1B] p-3">
         <h2 className="text-lg font-semibold text-gray-100">
-          📧 Email Preview ({currentMode})
+          🎨 Template Theme
         </h2>
-        <button
-          onClick={handleToggle}
-          className={`px-4 py-2 text-sm rounded border transition-colors cursor-pointer ${
-            usePlaceholder
-              ? "bg-blue-100 text-blue-700 border-blue-300"
-              : "bg-gray-100 text-gray-700 border-gray-300 hover:bg-gray-200"
-          }`}
-        >
-          {usePlaceholder ? "🎭 Mock Data" : "🔧 Placeholder"}
-        </button>
+        <div className="flex items-center gap-3">
+          <span className="px-3 py-1 text-sm bg-purple-800 text-purple-200 rounded font-mono">
+            {beTemplateTheme}
+          </span>
+        </div>
       </div>
-      <div className="border p-4 border-gray-300">{currentPreview}</div>
-
       {/* HTML Section */}
       <div className="sticky top-0 flex items-center justify-between gap-2 bg-[#070D1B] p-3">
         <h2 className="text-lg font-semibold text-gray-100">
@@ -222,6 +233,7 @@ export default function EmailPreviewClient({
             <TemplateSyncButton
               templateName={slug}
               templateContent={currentHtml}
+              templateTheme={beTemplateTheme}
               onStatusChange={handleSyncStatusChange}
               initialStatus={syncStatus}
             />

@@ -196,6 +196,8 @@ export const bePlaceHolderComments = {
   trackingUrl: "跟踪像素URL",
 };
 
+export const beTemplateTheme = "pay-completed";
+
 export default function PayCompletedPage({
   data,
 }: {

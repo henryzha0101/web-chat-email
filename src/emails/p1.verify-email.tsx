@@ -105,6 +105,8 @@ export const bePlaceHolderComments = {
   trackingUrl: "跟踪像素URL",
 };
 
+export const beTemplateTheme = "verify-email";
+
 export default function VerifyEmailPage({ data }: { data: VerifyEmailProps }) {
   const props = data ?? beRender;
   return <VerifyEmail {...props} />;

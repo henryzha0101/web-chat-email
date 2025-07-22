@@ -161,6 +161,8 @@ export const bePlaceHolderComments = {
   trackingUrl: "跟踪像素URL",
 };
 
+export const beTemplateTheme = "pay-failed";
+
 export default function PayFailedPage({ data }: { data: PayFailedProps }) {
   const props = data ?? beRender;
   return <PayFailed {...props} />;

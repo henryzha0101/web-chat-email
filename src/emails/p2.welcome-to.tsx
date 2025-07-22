@@ -104,12 +104,18 @@ const button = {
 
 interface WelcomeToProps {
   rid: string;
+  rSecret: string;
   userId: string;
   userCardImg?: string;
   trackingUrl?: string;
 }
 
-export const WelcomeTo = ({ rid, userId, trackingUrl }: WelcomeToProps) => {
+export const WelcomeTo = ({
+  rid,
+  rSecret,
+  userId,
+  trackingUrl,
+}: WelcomeToProps) => {
   return (
     <EmailContainer
       title={`I'm waiting for you...`}
@@ -140,6 +146,7 @@ export const WelcomeTo = ({ rid, userId, trackingUrl }: WelcomeToProps) => {
                   utmContent: `${EMAIL_TYPES.WELCOME_TO}-welcome_chat_button`,
                   emailType: EMAIL_TYPES.WELCOME_TO,
                   character_id: rid,
+                  rSecret,
                   userId,
                 })}
               >
@@ -153,6 +160,7 @@ export const WelcomeTo = ({ rid, userId, trackingUrl }: WelcomeToProps) => {
                 utmContent: `${EMAIL_TYPES.WELCOME_TO}-welcome_chat_button`,
                 emailType: EMAIL_TYPES.WELCOME_TO,
                 character_id: rid,
+                rSecret,
                 userId,
               })}
             >
@@ -170,6 +178,7 @@ export const WelcomeTo = ({ rid, userId, trackingUrl }: WelcomeToProps) => {
             utmContent: `${EMAIL_TYPES.WELCOME_TO}-welcome_chat_button`,
             emailType: EMAIL_TYPES.WELCOME_TO,
             character_id: rid,
+            rSecret,
             userId,
           })}
         >
@@ -193,6 +202,7 @@ export const WelcomeTo = ({ rid, userId, trackingUrl }: WelcomeToProps) => {
             utmContent: `${EMAIL_TYPES.WELCOME_TO}-welcome_chat_button`,
             emailType: EMAIL_TYPES.WELCOME_TO,
             character_id: rid,
+            rSecret,
             userId,
           })}
         >
@@ -215,6 +225,7 @@ export const WelcomeTo = ({ rid, userId, trackingUrl }: WelcomeToProps) => {
                 utmContent: `${EMAIL_TYPES.WELCOME_TO}-welcome_chat_button`,
                 emailType: EMAIL_TYPES.WELCOME_TO,
                 character_id: rid,
+                rSecret,
                 userId,
               })}
               style={button}
@@ -236,6 +247,7 @@ export const WelcomeTo = ({ rid, userId, trackingUrl }: WelcomeToProps) => {
 
 const beRender = {
   rid: "test-rid",
+  rSecret: "test-rSecret",
   userId: "61912225442",
   userCardImg:
     "https://pub-1dd2cb98fc55487b8f184cb1b0017c12.r2.dev/character/album/1921137325988651008/picture/card.jpeg",
@@ -245,6 +257,8 @@ const beRender = {
 export const bePlaceHolder = {
   /** 角色ID */
   rid: "{{rid}}",
+  /** 角色密钥 */
+  rSecret: "{{rSecret}}",
   /** 用户ID */
   userId: "{{userId}}",
   /** 用户卡片图片 */
@@ -255,10 +269,13 @@ export const bePlaceHolder = {
 
 export const bePlaceHolderComments = {
   rid: "角色ID",
+  rSecret: "角色密钥",
   userId: "用户ID",
   // userCardImg: "用户卡片图片",
   trackingUrl: "跟踪像素URL",
 };
+
+export const beTemplateTheme = "welcome-to";
 
 export default function WelcomeToPage({ data }: { data: WelcomeToProps }) {
   const props = data ?? beRender;
