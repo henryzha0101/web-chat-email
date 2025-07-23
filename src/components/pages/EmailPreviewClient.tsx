@@ -172,6 +172,29 @@ export default function EmailPreviewClient({
           </span>
         </div>
       </div>
+
+      {/* URL编码提示 */}
+      <div className="mx-3 mb-4 p-3 bg-amber-900 text-amber-200 border border-amber-700 rounded-lg text-sm">
+        <div className="flex items-start gap-2">
+          <span className="text-amber-400 text-lg flex-shrink-0">⚠️</span>
+          <div>
+            <strong>重要提示：</strong>当参数出现在 href 属性中时，会被URL编码：
+            <br />
+            <code className="mx-1 px-2 py-1 bg-amber-800 rounded text-amber-100">
+              {`{{userId}}`}
+            </code>
+            →
+            <code className="mx-1 px-2 py-1 bg-amber-800 rounded text-amber-100">
+              %7B%7BuserId%7D%7D
+            </code>
+            <br />
+            <span className="text-amber-300">
+              请确保模板替换时同时处理这两种形式，避免遗漏。
+            </span>
+          </div>
+        </div>
+      </div>
+
       <div className="bg-gray-900 rounded-lg p-4 mb-4 border border-gray-700">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {Object.entries(bePlaceHolder).map(([key, value]) => (
@@ -179,31 +202,66 @@ export default function EmailPreviewClient({
               key={key}
               className="bg-gray-800 rounded p-3 border border-gray-600"
             >
-              <div className="flex flex-col gap-2">
-                <div className="flex items-start gap-2">
-                  <span className="text-blue-400 font-mono text-sm font-semibold">
-                    {key}:
-                  </span>
-                  <span
-                    className="text-green-400 font-mono text-sm break-all cursor-pointer hover:bg-gray-700 px-1 py-0.5 rounded transition-colors relative group"
-                    onClick={() => copyToClipboard(String(value), key)}
-                    title="点击复制到剪切板"
-                  >
-                    {String(value)}
-                    {copiedKey === key ? (
-                      <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-green-600 text-white text-xs px-2 py-1 rounded whitespace-nowrap z-10">
-                        已复制!
-                      </span>
-                    ) : (
-                      <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-700 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity z-10">
-                        点击复制
-                      </span>
-                    )}
-                  </span>
+              <div className="flex flex-col gap-3">
+                {/* 原始参数 */}
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-start gap-2">
+                    <span className="text-blue-400 font-mono text-sm font-semibold">
+                      {key}:
+                    </span>
+                    <span
+                      className="text-green-400 font-mono text-sm break-all cursor-pointer hover:bg-gray-700 px-1 py-0.5 rounded transition-colors relative group"
+                      onClick={() => copyToClipboard(String(value), key)}
+                      title="点击复制原始参数到剪切板"
+                    >
+                      {String(value)}
+                      {copiedKey === key ? (
+                        <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-green-600 text-white text-xs px-2 py-1 rounded whitespace-nowrap z-10">
+                          已复制!
+                        </span>
+                      ) : (
+                        <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-700 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                          点击复制
+                        </span>
+                      )}
+                    </span>
+                  </div>
                 </div>
+
+                {/* URL编码版本 */}
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-start gap-2">
+                    <span className="text-orange-400 font-mono text-xs font-semibold">
+                      URL编码:
+                    </span>
+                    <span
+                      className="text-orange-300 font-mono text-xs break-all cursor-pointer hover:bg-gray-700 px-1 py-0.5 rounded transition-colors relative group"
+                      onClick={() =>
+                        copyToClipboard(
+                          encodeURIComponent(String(value)),
+                          `${key}-encoded`
+                        )
+                      }
+                      title="点击复制URL编码版本到剪切板"
+                    >
+                      {encodeURIComponent(String(value))}
+                      {copiedKey === `${key}-encoded` ? (
+                        <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-green-600 text-white text-xs px-2 py-1 rounded whitespace-nowrap z-10">
+                          已复制!
+                        </span>
+                      ) : (
+                        <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-700 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                          点击复制
+                        </span>
+                      )}
+                    </span>
+                  </div>
+                </div>
+
+                {/* 参数注释 */}
                 {bePlaceHolderComments[key] && (
-                  <div className="text-gray-400 text-xs italic">
-                    {bePlaceHolderComments[key]}
+                  <div className="text-gray-400 text-xs italic pt-1 border-t border-gray-600">
+                    💬 {bePlaceHolderComments[key]}
                   </div>
                 )}
               </div>
