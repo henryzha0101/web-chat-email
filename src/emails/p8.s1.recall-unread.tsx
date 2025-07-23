@@ -114,7 +114,7 @@ const beRender = {
   rid: "test-rid",
   rSecret: "test-rSecret",
   userId: "61912225442",
-  trackingUrl: "https://example.com/track?id=test-tracking-id",
+  // trackingUrl: "https://example.com/track?id=test-tracking-id",
 };
 
 export const bePlaceHolder = {
@@ -125,7 +125,7 @@ export const bePlaceHolder = {
   /** 用户ID */
   userId: "{{userId}}",
   /** 跟踪像素URL */
-  trackingUrl: "{{trackingUrl}}",
+  // trackingUrl: "{{trackingUrl}}",
 };
 
 export const bePlaceHolderComments = {

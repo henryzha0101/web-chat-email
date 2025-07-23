@@ -185,7 +185,7 @@ const beRender = {
     "https://pub-1dd2cb98fc55487b8f184cb1b0017c12.r2.dev/character/album/1921137325988651008/picture/avatar.jpeg",
   userId: "61912225442",
   userName: "henry",
-  trackingUrl: "https://example.com/track?id=test-tracking-id",
+  // trackingUrl: "https://example.com/track?id=test-tracking-id",
 };
 
 export const bePlaceHolder = {
@@ -202,7 +202,7 @@ export const bePlaceHolder = {
   /** 用户名称 */
   userName: "{{userName}}",
   /** 跟踪像素URL */
-  trackingUrl: "{{trackingUrl}}",
+  // trackingUrl: "{{trackingUrl}}",
 };
 
 export const bePlaceHolderComments = {
