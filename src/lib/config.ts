@@ -2,6 +2,7 @@ export const websiteName = process.env.NEXT_PUBLIC_WEBSITE_NAME || "AIGF.BEST";
 export const websiteUrl =
   process.env.NEXT_PUBLIC_BASE_URL || "https://bestaigirlfriend.app";
 export const websiteLogo = `${websiteUrl}/logo.png`;
+
 export const supportEmail =
   process.env.NEXT_PUBLIC_SUPPORT_EMAIL || "support@aigf.best";
 
